@@ -1,20 +1,59 @@
 from my_lib.participant_list import ParticipantList
+from my_lib.island import Island
 from my_lib.wall import Wall
 from my_lib.wall_view import WallView
 
+"""
+Example
+-------
+
+第29回世界コンピュータ将棋選手権
+http://sizer.main.jp/wcsc29/
+
+川崎市産業振興会館 ４F
+https://kawasaki-sanshinkaikan.jp/gyoumu/kaikan/hall-guide/4f.html
+
+
+G              E                C              A island
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+|  |  |  |  |  |  |  |  |  |    |  |  |  |  |  |  |  |  |  |
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+|  |  |  |  |  |  |  |  |  |    |  |  |  |  |  |  |  |  |  |
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+
+H              F                D              B
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+|  |  |  |  |  |  |  |  |  |    |  |  |  |  |  |  |  |  |  |
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+|  |  |  |  |  |  |  |  |  |    |  |  |  |  |  |  |  |  |  |
++--+--+--+--+  +--+--+--+--+    +--+--+--+--+  +--+--+--+--+
+
+"""
+
 # Settings.
 participant_list = ParticipantList()
-for id in range(0, 11):
+team_num = 40
+for id in range(0, team_num):
     participant_list.append_id(id+1)
-start = 0
-f_wall = Wall(10)
+
+islands = [
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+    Island(4, 4),
+]
 
 # Entry.
-end = start + f_wall.size + 1
-sub_list = participant_list.slice(start, end)
-f_wall.insert_from_list(sub_list)
-start = end
+start = 0
+for i_is in range(0, len(islands)):
+    end = start + len(islands[i_is])
+    start = islands[i_is].inject_from_list(participant_list, start, end)
 
 # Show.
 wall_view = WallView()
-wall_view.show(f_wall)
+for i_is in range(0, len(islands)):
+    wall_view.show(islands[i_is])
