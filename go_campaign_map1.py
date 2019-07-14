@@ -1,8 +1,8 @@
-from my_lib.participant import Participant
-from my_lib.island import Island
-from my_lib.island_view import IslandView
-from my_lib.wall import Wall
-from my_lib.wall_view import WallView
+from placement.participant import Participant
+from placement.island import Island
+from placement.island_view import IslandView
+from placement.wall import Wall
+from placement.wall_view import WallView
 
 """
 Example

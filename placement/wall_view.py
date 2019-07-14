@@ -1,4 +1,4 @@
-from my_lib.wall import Wall
+from placement.wall import Wall
 
 
 class WallView(object):

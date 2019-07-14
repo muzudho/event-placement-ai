@@ -1,4 +1,4 @@
-from my_lib.wall import Wall
+from .wall import Wall
 
 
 class Island(object):

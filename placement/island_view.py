@@ -1,4 +1,4 @@
-from my_lib.island import Island
+from .island import Island
 
 
 class IslandView(object):
