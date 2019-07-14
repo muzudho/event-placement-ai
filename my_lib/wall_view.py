@@ -11,4 +11,6 @@ class WallView(object):
             return
 
         wall.iter(visit)
+        print("")
+        print("")
         return

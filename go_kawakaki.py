@@ -38,14 +38,14 @@ for id in range(0, team_num):
     participant_list.append_id(id+1)
 
 islands = [
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
-    Island(4, 4),
+    Island("A", 4, 4),
+    Island("B", 4, 4),
+    Island("C", 4, 4),
+    Island("D", 4, 4),
+    Island("E", 4, 4),
+    Island("F", 4, 4),
+    Island("G", 4, 4),
+    Island("H", 4, 4),
 ]
 
 # Entry.
@@ -57,7 +57,7 @@ for i_is in range(0, len(islands)):
 # Show.
 island_view = IslandView()
 for i_is in range(0, len(islands)):
-    print("{} island.".format(i_is))
+    print("{} island.".format(islands[i_is].name))
     island_view.show(islands[i_is])
 
 print("Info    : Finished.")

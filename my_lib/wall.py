@@ -3,12 +3,17 @@ class Wall(object):
     壁。1列。
     """
 
-    def __init__(self, edge_size):
+    def __init__(self, name, edge_size):
+        self._name = name
         self._edge = [0] * edge_size
         return
 
     def __len__(self):
         return len(self._edge)
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def edge(self):

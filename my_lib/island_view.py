@@ -13,4 +13,5 @@ class IslandView(object):
             print("")
 
         island.iter(visit_cell, visit_line)
+        print("")
         return

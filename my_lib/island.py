@@ -6,8 +6,9 @@ class Island(object):
     島。壁を使い回して2列にする。
     """
 
-    def __init__(self, len0, len1):
-        self._edges = [Wall(len0), Wall(len1)]
+    def __init__(self, name, len0, len1):
+        self._name = name
+        self._edges = [Wall(name, len0), Wall(name, len1)]
         return
 
     def __len__(self):
@@ -16,6 +17,10 @@ class Island(object):
             total += len(entry)
 
         return total
+
+    @property
+    def name(self):
+        return self._name
 
     def inject_from_list(self, list, start, end):
         #print("List size 3: {}".format(len(list)))
