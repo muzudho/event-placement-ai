@@ -28,10 +28,12 @@ class Island(object):
 
         return end
 
-    def iter(self, callback):
+    def iter(self, cell_callback, line_callback):
         # print("Edge size3: {}".format(self.size))
-        for i in range(0, len(self)):
-            callback(i)
+        for i_ed in range(0, 2):
+            for i_ce in range(0, len(self._edges[i_ed])):
+                cell_callback(self._edges[i_ed].at(i_ce))
+            line_callback(i_ed)
         return
 
     def at(self, index):

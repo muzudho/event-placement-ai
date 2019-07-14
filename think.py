@@ -1,5 +1,6 @@
 from my_lib.participant_list import ParticipantList
 from my_lib.island import Island
+from my_lib.island_view import IslandView
 from my_lib.wall import Wall
 from my_lib.wall_view import WallView
 
@@ -54,6 +55,9 @@ for i_is in range(0, len(islands)):
     start = islands[i_is].inject_from_list(participant_list, start, end)
 
 # Show.
-wall_view = WallView()
+island_view = IslandView()
 for i_is in range(0, len(islands)):
-    wall_view.show(islands[i_is])
+    print("{} island.".format(i_is))
+    island_view.show(islands[i_is])
+
+print("Info    : Finished.")

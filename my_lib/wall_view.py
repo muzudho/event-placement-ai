@@ -7,7 +7,7 @@ class WallView(object):
 
     def show(self, wall):
         def visit(i):
-            print("[{:>3}]".format(wall.at(i)))
+            print("[{:>3}]".format(wall.at(i)), end="")
             return
 
         wall.iter(visit)
