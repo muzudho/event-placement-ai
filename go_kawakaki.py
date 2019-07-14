@@ -1,4 +1,3 @@
-from my_lib.participant_list import ParticipantList
 from my_lib.island import Island
 from my_lib.island_view import IslandView
 from my_lib.wall import Wall
@@ -32,10 +31,10 @@ H              F                D              B
 """
 
 # Settings.
-participant_list = ParticipantList()
+id_list = []
 team_num = 40
 for id in range(0, team_num):
-    participant_list.append_id(id+1)
+    id_list.append(id+1)
 
 islands = [
     Island("A", 4, 4),
@@ -52,7 +51,7 @@ islands = [
 start = 0
 for i_is in range(0, len(islands)):
     end = start + len(islands[i_is])
-    start = islands[i_is].inject_from_list(participant_list, start, end)
+    start = islands[i_is].inject_from_id_list(id_list, start, end)
 
 # Show.
 island_view = IslandView()

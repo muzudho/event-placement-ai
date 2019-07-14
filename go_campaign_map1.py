@@ -1,4 +1,4 @@
-from my_lib.participant_list import ParticipantList
+from my_lib.participant import Participant
 from my_lib.island import Island
 from my_lib.island_view import IslandView
 from my_lib.wall import Wall
@@ -29,13 +29,13 @@ Campaign map 1.
 """
 
 # Settings.
-participant_list = ParticipantList()
+id_list = []
 team_num = 60
 for id in range(0, team_num):
-    participant_list.append_id(id+1)
+    id_list.append(id+1)
 
 islands = [
-    Wall("A", 16),
+    Wall("A", 18),
     Wall("B", 4),
     Wall("C", 14),
     Island("D", 5, 5),
@@ -47,7 +47,7 @@ islands = [
 start = 0
 for i_is in range(0, len(islands)):
     end = start + len(islands[i_is])
-    start = islands[i_is].inject_from_list(participant_list, start, end)
+    start = islands[i_is].inject_from_id_list(id_list, start, end)
 
 # Show.
 wall_view = WallView()

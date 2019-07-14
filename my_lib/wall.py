@@ -22,15 +22,12 @@ class Wall(object):
     def at(self, index):
         return self._edge[index]
 
-    def inject_from_list(self, list, start, end):
-        sub_list = list.slice(start, end)
+    def inject_from_id_list(self, id_list, start, end):
+        sub_list = [id for id in id_list[start:end]]
 
-        # print("List size : {}".format(len(list)))
-        # print("Edge size1: {}".format(self.size))
         size = min(len(self), len(sub_list))
         for i in range(0, size):
             self._edge[i] = sub_list[i]
-        # print("Edge size2: {}".format(self.size))
         return start + size
 
     def iter(self, callback):

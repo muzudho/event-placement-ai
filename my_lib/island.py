@@ -22,14 +22,11 @@ class Island(object):
     def name(self):
         return self._name
 
-    def inject_from_list(self, list, start, end):
-        #print("List size 3: {}".format(len(list)))
-        #print("Edge size 3: {}".format(len(self)))
+    def inject_from_id_list(self, id_list, start, end):
         end = 0
         for i_ed in range(0, 2):
             end = start + len(self._edges[i_ed])
-            start = self._edges[i_ed].inject_from_list(list, start, end)
-        #print("Edge size 4: {}".format(len(self)))
+            start = self._edges[i_ed].inject_from_id_list(id_list, start, end)
 
         return end
 
