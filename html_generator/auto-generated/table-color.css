@@ -1,0 +1,543 @@
+
+    
+    #box1 {
+        position: absolute;
+        left    :   64px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box2 {
+        position: absolute;
+        left    :  224px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box3 {
+        position: absolute;
+        left    :  112px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box4 {
+        position: absolute;
+        left    :  144px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box5 {
+        position: absolute;
+        left    :    0px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box6 {
+        position: absolute;
+        left    :  256px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box7 {
+        position: absolute;
+        left    :  112px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box8 {
+        position: absolute;
+        left    :  160px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box9 {
+        position: absolute;
+        left    :   16px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box10 {
+        position: absolute;
+        left    :  128px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box11 {
+        position: absolute;
+        left    :  304px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Purple;
+    }
+                
+    #box12 {
+        position: absolute;
+        left    :  304px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box13 {
+        position: absolute;
+        left    :  208px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Violet;
+    }
+                
+    #box14 {
+        position: absolute;
+        left    :  128px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box15 {
+        position: absolute;
+        left    :  128px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box16 {
+        position: absolute;
+        left    :  224px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box17 {
+        position: absolute;
+        left    :   48px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box18 {
+        position: absolute;
+        left    :   48px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box19 {
+        position: absolute;
+        left    :  208px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: SkyBlue;
+    }
+                
+    #box20 {
+        position: absolute;
+        left    :  304px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box21 {
+        position: absolute;
+        left    :  224px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box22 {
+        position: absolute;
+        left    :    0px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box23 {
+        position: absolute;
+        left    :   64px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Black;
+    }
+                
+    #box24 {
+        position: absolute;
+        left    :  272px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Black;
+    }
+                
+    #box25 {
+        position: absolute;
+        left    :   32px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: White;
+    }
+                
+    #box26 {
+        position: absolute;
+        left    :   32px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box27 {
+        position: absolute;
+        left    :  256px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box28 {
+        position: absolute;
+        left    :  240px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Pink;
+    }
+                
+    #box29 {
+        position: absolute;
+        left    :  272px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box30 {
+        position: absolute;
+        left    :  240px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box31 {
+        position: absolute;
+        left    :  208px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box32 {
+        position: absolute;
+        left    :    0px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Orange;
+    }
+                
+    #box33 {
+        position: absolute;
+        left    :  304px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box34 {
+        position: absolute;
+        left    :    0px;
+        top     :   64px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Pink;
+    }
+                
+    #box35 {
+        position: absolute;
+        left    :    0px;
+        top     :   16px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Gray;
+    }
+                
+    #box36 {
+        position: absolute;
+        left    :   64px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box37 {
+        position: absolute;
+        left    :   32px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box38 {
+        position: absolute;
+        left    :  160px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Orange;
+    }
+                
+    #box39 {
+        position: absolute;
+        left    :  144px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: White;
+    }
+                
+    #box40 {
+        position: absolute;
+        left    :  224px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box41 {
+        position: absolute;
+        left    :  160px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box42 {
+        position: absolute;
+        left    :  240px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box43 {
+        position: absolute;
+        left    :    0px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box44 {
+        position: absolute;
+        left    :   32px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box45 {
+        position: absolute;
+        left    :  256px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: YellowGreen;
+    }
+                
+    #box46 {
+        position: absolute;
+        left    :  272px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Black;
+    }
+                
+    #box47 {
+        position: absolute;
+        left    :  256px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Brown;
+    }
+                
+    #box48 {
+        position: absolute;
+        left    :  304px;
+        top     :   64px;
+        width   :   16px;
+        height  :   16px;
+        background-color: White;
+    }
+                
+    #box49 {
+        position: absolute;
+        left    :  112px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Gray;
+    }
+                
+    #box50 {
+        position: absolute;
+        left    :  288px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box51 {
+        position: absolute;
+        left    :  288px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box52 {
+        position: absolute;
+        left    :   64px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Red;
+    }
+                
+    #box53 {
+        position: absolute;
+        left    :  240px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box54 {
+        position: absolute;
+        left    :  304px;
+        top     :   16px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Orange;
+    }
+                
+    #box55 {
+        position: absolute;
+        left    :   16px;
+        top     :    0px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Violet;
+    }
+                
+    #box56 {
+        position: absolute;
+        left    :  208px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+    #box57 {
+        position: absolute;
+        left    :  144px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Green;
+    }
+                
+    #box58 {
+        position: absolute;
+        left    :   48px;
+        top     :   48px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Yellow;
+    }
+                
+    #box59 {
+        position: absolute;
+        left    :   48px;
+        top     :   80px;
+        width   :   16px;
+        height  :   16px;
+        background-color: White;
+    }
+                
+    #box60 {
+        position: absolute;
+        left    :  272px;
+        top     :   32px;
+        width   :   16px;
+        height  :   16px;
+        background-color: Blue;
+    }
+                
+                

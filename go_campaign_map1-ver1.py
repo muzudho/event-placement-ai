@@ -1,16 +1,16 @@
-from placement.participant import Participant
+import os
+from attribute.participant import Participant
 from placement.island import Island
 from placement.island_view import IslandView
 from placement.wall import Wall
 from placement.wall_view import WallView
+from attribute.id_sort import id_sort
 
 """
 Example
 -------
 
 Campaign map 1.
-
-
 
 +--+--+--+--+--+     +--+--+--+--+     +--+--+--+--+--+--+--+
 |  |  |  |  |  |C    |  |  |  |  |B    |  |  |  |  |  |  |  |
@@ -25,14 +25,39 @@ Campaign map 1.
 +--+--+--+--+--+                       +--+--+--+--+--+--+--+
 |  |  |  |  |  |                      A|  |  |  |  |  |  |  |
 +--+--+--+--+--+                       +--+--+--+--+--+--+--+
-                                      
+
+CCCCC..BBBB..AAAAAAA
+C..................A
+C.FFF..EEEE..DDDDD.A
+C.FFF..EEEE..DDDDD.A
+C..................A
+CCCCC........AAAAAAA
+
 """
 
-# Settings.
+# Participants.
+participant_list_src = id_sort(
+    "{}/event-placement-ai/data/participant.csv".format(os.getcwd()))
+"""
+ID,GENRE_CODE
+1,Red
+2,Red
+3,Blue
+"""
+
 id_list = []
+for i in range(0, len(participant_list_src)):
+    id_list.append(participant_list_src[i][0])
+
+print("id_list: {}".format(id_list))
+
+# Settings of placement.
+"""
 team_num = 60
+id_list = []
 for id in range(0, team_num):
     id_list.append(id+1)
+"""
 
 islands = [
     Wall("A", 18),
