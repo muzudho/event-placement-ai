@@ -9,6 +9,8 @@ output_file_name = "./event-placement-ai/auto-generated/floor-map.csv"
 
 
 def convert_map():
+    print("Info    : biuld_floor_map/convet_map().")
+
     try:
         bl_file = open(block_input_file)
         try:
@@ -63,7 +65,3 @@ def convert_map():
         print(e)
     finally:
         bl_file.close()
-
-
-convert_map()
-print("Info    : Finished.")

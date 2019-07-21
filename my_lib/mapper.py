@@ -1,21 +1,20 @@
-import random
-
 """
 Note.
     Root directory: Visual studio code workspace root.
 """
 
 
-def go_shuffule(par_id_list, flo_id_list):
+def write_mappings(par_id_list, flo_id_list):
+    print("Info    : my_lib/mapper/write_mappings().")
 
     # Location.
     output_mappings = "./event-placement-ai/auto-generated/mappings.csv"
 
-    random.shuffle(par_id_list)
     # print("par_id_list: {}".format(par_id_list))
+    print("Info    : len(par_id_list) : {}".format(len(par_id_list)))
 
-    random.shuffle(flo_id_list)
     # print("flo_id_list: {}".format(flo_id_list))
+    print("Info    : len(flo_id_list) : {}".format(len(flo_id_list)))
 
     """
     Make: mappings.csv
@@ -29,10 +28,15 @@ def go_shuffule(par_id_list, flo_id_list):
     try:
         file = open(output_mappings, 'w', encoding='utf-8')
 
-        file.write("PARTICIPANT,TABLE\n")
-        for i in range(len(par_id_list)):
+        file.write("TABLE,PARTICIPANT\n")
+        for i, table_id in enumerate(flo_id_list):
+            if i < len(par_id_list):
+                participants_id = par_id_list[i]
+            else:
+                participants_id = 0
+
             file.write(
-                "{},{}\n".format(par_id_list[i], flo_id_list[i])
+                "{},{}\n".format(table_id, participants_id)
             )
     except Exception as e:
         print(e)

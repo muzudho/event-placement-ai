@@ -1,543 +1,543 @@
 
     
-    #table1 {
-        position: absolute;
-        left    :  480px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table2 {
-        position: absolute;
-        left    :  320px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table3 {
-        position: absolute;
-        left    :  320px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table4 {
-        position: absolute;
-        left    :   32px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table5 {
-        position: absolute;
-        left    :   32px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table6 {
-        position: absolute;
-        left    :  448px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table7 {
-        position: absolute;
-        left    :  480px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table8 {
-        position: absolute;
-        left    :  416px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table9 {
-        position: absolute;
-        left    :  288px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table10 {
-        position: absolute;
-        left    :    0px;
-        top     :  128px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table11 {
-        position: absolute;
-        left    :  544px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Purple;
-    }
-                
-    #table12 {
-        position: absolute;
-        left    :   64px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table13 {
-        position: absolute;
-        left    :    0px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Violet;
-    }
-                
-    #table14 {
-        position: absolute;
-        left    :  416px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table15 {
-        position: absolute;
-        left    :  320px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table16 {
-        position: absolute;
-        left    :    0px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table17 {
-        position: absolute;
-        left    :   96px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table18 {
-        position: absolute;
-        left    :  256px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table19 {
-        position: absolute;
-        left    :  416px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: SkyBlue;
-    }
-                
-    #table20 {
-        position: absolute;
-        left    :  608px;
-        top     :   32px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table21 {
-        position: absolute;
-        left    :  288px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table22 {
-        position: absolute;
-        left    :  576px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table23 {
-        position: absolute;
-        left    :  128px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Black;
-    }
-                
-    #table24 {
-        position: absolute;
-        left    :    0px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Black;
-    }
-                
-    #table25 {
-        position: absolute;
-        left    :  256px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: White;
-    }
-                
-    #table26 {
-        position: absolute;
-        left    :  224px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table27 {
-        position: absolute;
-        left    :  128px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table28 {
-        position: absolute;
-        left    :   64px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Pink;
-    }
-                
-    #table29 {
-        position: absolute;
-        left    :  512px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table30 {
-        position: absolute;
-        left    :  448px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table31 {
-        position: absolute;
-        left    :  480px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table32 {
-        position: absolute;
-        left    :  544px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Orange;
-    }
-                
-    #table33 {
-        position: absolute;
-        left    :  224px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table34 {
-        position: absolute;
-        left    :    0px;
-        top     :   32px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Pink;
-    }
-                
-    #table35 {
-        position: absolute;
-        left    :  512px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Gray;
-    }
-                
-    #table36 {
-        position: absolute;
-        left    :  224px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table37 {
-        position: absolute;
-        left    :  256px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table38 {
-        position: absolute;
-        left    :  128px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Orange;
-    }
-                
-    #table39 {
-        position: absolute;
-        left    :  544px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: White;
-    }
-                
-    #table40 {
-        position: absolute;
-        left    :  608px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table41 {
-        position: absolute;
-        left    :  128px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table42 {
-        position: absolute;
-        left    :  416px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table43 {
-        position: absolute;
-        left    :   64px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table44 {
-        position: absolute;
-        left    :  608px;
-        top     :  128px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table45 {
-        position: absolute;
-        left    :  576px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: YellowGreen;
-    }
-                
-    #table46 {
-        position: absolute;
-        left    :   96px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Black;
-    }
-                
-    #table47 {
-        position: absolute;
-        left    :    0px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Brown;
-    }
-                
-    #table48 {
-        position: absolute;
-        left    :   64px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: White;
-    }
-                
-    #table49 {
-        position: absolute;
-        left    :  512px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Gray;
-    }
-                
-    #table50 {
-        position: absolute;
-        left    :   96px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table51 {
-        position: absolute;
-        left    :  288px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table52 {
-        position: absolute;
-        left    :   96px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Red;
-    }
-                
-    #table53 {
-        position: absolute;
-        left    :  480px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table54 {
-        position: absolute;
-        left    :  544px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Orange;
-    }
-                
-    #table55 {
-        position: absolute;
-        left    :  608px;
-        top     :  160px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Violet;
-    }
-                
-    #table56 {
-        position: absolute;
-        left    :  608px;
-        top     :   64px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
-    #table57 {
-        position: absolute;
-        left    :  448px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Green;
-    }
-                
-    #table58 {
-        position: absolute;
-        left    :  608px;
-        top     :    0px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Yellow;
-    }
-                
-    #table59 {
-        position: absolute;
-        left    :  448px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: White;
-    }
-                
-    #table60 {
-        position: absolute;
-        left    :  512px;
-        top     :   96px;
-        width   :   32px;
-        height  :   32px;
-        background-color: Blue;
-    }
-                
+        #table27 {
+            position: absolute;
+            left    :    0px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Gray;
+        }
+                    
+        #table26 {
+            position: absolute;
+            left    :   32px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table25 {
+            position: absolute;
+            left    :   64px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table24 {
+            position: absolute;
+            left    :   96px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table23 {
+            position: absolute;
+            left    :  128px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table22 {
+            position: absolute;
+            left    :  224px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table21 {
+            position: absolute;
+            left    :  256px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Black;
+        }
+                    
+        #table20 {
+            position: absolute;
+            left    :  288px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Orange;
+        }
+                    
+        #table19 {
+            position: absolute;
+            left    :  320px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table18 {
+            position: absolute;
+            left    :  416px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table17 {
+            position: absolute;
+            left    :  448px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table16 {
+            position: absolute;
+            left    :  480px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table15 {
+            position: absolute;
+            left    :  512px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table14 {
+            position: absolute;
+            left    :  544px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Pink;
+        }
+                    
+        #table13 {
+            position: absolute;
+            left    :  576px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table12 {
+            position: absolute;
+            left    :  608px;
+            top     :    0px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Gray;
+        }
+                    
+        #table28 {
+            position: absolute;
+            left    :    0px;
+            top     :   32px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table11 {
+            position: absolute;
+            left    :  608px;
+            top     :   32px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table29 {
+            position: absolute;
+            left    :    0px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table57 {
+            position: absolute;
+            left    :   64px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table56 {
+            position: absolute;
+            left    :   96px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: White;
+        }
+                    
+        #table55 {
+            position: absolute;
+            left    :  128px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Black;
+        }
+                    
+        #table50 {
+            position: absolute;
+            left    :  224px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: White;
+        }
+                    
+        #table49 {
+            position: absolute;
+            left    :  256px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Brown;
+        }
+                    
+        #table48 {
+            position: absolute;
+            left    :  288px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table47 {
+            position: absolute;
+            left    :  320px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table41 {
+            position: absolute;
+            left    :  416px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table40 {
+            position: absolute;
+            left    :  448px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table39 {
+            position: absolute;
+            left    :  480px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: SkyBlue;
+        }
+                    
+        #table38 {
+            position: absolute;
+            left    :  512px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table37 {
+            position: absolute;
+            left    :  544px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table10 {
+            position: absolute;
+            left    :  608px;
+            top     :   64px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Orange;
+        }
+                    
+        #table30 {
+            position: absolute;
+            left    :    0px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table58 {
+            position: absolute;
+            left    :   64px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table59 {
+            position: absolute;
+            left    :   96px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table60 {
+            position: absolute;
+            left    :  128px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Orange;
+        }
+                    
+        #table51 {
+            position: absolute;
+            left    :  224px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Purple;
+        }
+                    
+        #table52 {
+            position: absolute;
+            left    :  256px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: White;
+        }
+                    
+        #table53 {
+            position: absolute;
+            left    :  288px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table54 {
+            position: absolute;
+            left    :  320px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table42 {
+            position: absolute;
+            left    :  416px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Pink;
+        }
+                    
+        #table43 {
+            position: absolute;
+            left    :  448px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
+        #table44 {
+            position: absolute;
+            left    :  480px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: YellowGreen;
+        }
+                    
+        #table45 {
+            position: absolute;
+            left    :  512px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table46 {
+            position: absolute;
+            left    :  544px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table9 {
+            position: absolute;
+            left    :  608px;
+            top     :   96px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table31 {
+            position: absolute;
+            left    :    0px;
+            top     :  128px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table8 {
+            position: absolute;
+            left    :  608px;
+            top     :  128px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table32 {
+            position: absolute;
+            left    :    0px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Black;
+        }
+                    
+        #table33 {
+            position: absolute;
+            left    :   32px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table34 {
+            position: absolute;
+            left    :   64px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Blue;
+        }
+                    
+        #table35 {
+            position: absolute;
+            left    :   96px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table36 {
+            position: absolute;
+            left    :  128px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: White;
+        }
+                    
+        #table1 {
+            position: absolute;
+            left    :  416px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table2 {
+            position: absolute;
+            left    :  448px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Violet;
+        }
+                    
+        #table3 {
+            position: absolute;
+            left    :  480px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table4 {
+            position: absolute;
+            left    :  512px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Green;
+        }
+                    
+        #table5 {
+            position: absolute;
+            left    :  544px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Yellow;
+        }
+                    
+        #table6 {
+            position: absolute;
+            left    :  576px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Violet;
+        }
+                    
+        #table7 {
+            position: absolute;
+            left    :  608px;
+            top     :  160px;
+            width   :   32px;
+            height  :   32px;
+            background-color: Red;
+        }
+                    
                 
