@@ -17,7 +17,7 @@ def read_entry_lists():
     2,Red
     3,Blue
     """
-    pd_df = pd.read_csv("./event-placement-ai/data/participant.csv",
+    pd_df = pd.read_csv("./event-placement-ai/input-data/participant.csv",
                         sep=',', engine='python')
     pd_list = pd_df["ID"].values.tolist()
 
@@ -25,7 +25,7 @@ def read_entry_lists():
     From: floor-map.csv
     -------------------
     """
-    fl_df = pd.read_csv("./event-placement-ai/auto-generated/floor-map.csv",
+    fl_df = pd.read_csv("./event-placement-ai/input-data/floor-map.csv",
                         sep=',', engine='python')
     fl_list = fl_df["ID"].values.tolist()
     return pd_list, fl_list
