@@ -8,11 +8,11 @@ def evaluate(pos_df):
     block_dict = {}
 
     for _index, row in pos_df.iterrows():
-        x = row["X"]
-        y = row["Y"]
+        # x = row["X"]
+        # y = row["Y"]
         block = row["BLOCK"]
-        table_id = row["TABLE"]
-        participant_id = row["PARTICIPANT"]
+        # table_id = row["TABLE"]
+        # participant_id = row["PARTICIPANT"]
         genre_code = row["GENRE_CODE"]
 
         if not(block in block_dict):
@@ -24,8 +24,8 @@ def evaluate(pos_df):
         block_dict[block][genre_code] += 1
 
     # 集計
-    for block_name, genre_code_dict in block_dict.items():
-        for genre_code_name, count in genre_code_dict.items():
+    for _block_name, genre_code_dict in block_dict.items():
+        for _genre_code_name, count in genre_code_dict.items():
             value += count ** 2
             break
 

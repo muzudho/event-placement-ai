@@ -17,10 +17,10 @@ par_id_list, flo_id_list = read_entry_lists()
 # print("Info    : Participants count: {}".format(len(par_id_list)))
 # print("Info    : Table        count: {}".format(len(flo_id_list)))
 
-max_score = -1
+max_value = -1
 best_pos_df = None
 
-for i in range(0, 10):
+for i in range(0, 1000):
     # Shuffule
     random.shuffle(par_id_list)
     random.shuffle(flo_id_list)
@@ -30,11 +30,11 @@ for i in range(0, 10):
     pos_df = new_position()
 
     # Evaluation
-    score = evaluate(pos_df)
-    print("Info    : Score : {}".format(score))
+    value = evaluate(pos_df)
+    print("Info    : Value={}, Max={}".format(value, max_value))
 
-    if max_score < score:
-        max_score = score
+    if max_value < value:
+        max_value = value
         best_pos_df = pos_df
 
 new_html(best_pos_df)
