@@ -39,8 +39,8 @@ def new_csv(pos_df):
             x = row["X"]
             y = row["Y"]
 
-            width = 16
-            height = 16
+            width = 32
+            height = 32
 
             html.append(
                 """

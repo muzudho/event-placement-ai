@@ -14,9 +14,8 @@ def new_html(pos_df):
         for _index, row in pos_df.iterrows():
             html.append(
                 """
-        <div id="table{}">
-        </div>
-                """.format(row["TABLE"])
+        <div id="table{}">{}</div>
+                """.format(row["TABLE"], row["PARTICIPANT"])
             )
         return "".join(html)
 
