@@ -11,8 +11,8 @@ def new_csv(pos_df):
     Create csv.
     """
 
-    # Output.
-    output_css = "./event-placement-ai/html_generator/auto-generated/table-color.css"
+    # Location.
+    output_css = "./event-placement-ai/auto-generated/table-color.css"
 
     def write():
         try:
@@ -44,7 +44,7 @@ def new_csv(pos_df):
 
             html.append(
                 """
-    #box{} {{
+    #table{} {{
         position: absolute;
         left    : {: >4}px;
         top     : {: >4}px;

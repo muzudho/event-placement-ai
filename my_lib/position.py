@@ -11,8 +11,11 @@ def new_position():
     Create position.
     """
 
-    # Output.
+    # Location.
     output_position = "./event-placement-ai/auto-generated/position.csv"
+    input_floor = "./event-placement-ai/auto-generated/floor-map.csv"
+    input_participant = "./event-placement-ai/input-data/participant.csv"
+    mappings_file = "./event-placement-ai/auto-generated/mappings.csv"
 
     """
     Input: floor-map.csv
@@ -23,7 +26,7 @@ def new_position():
     26,1,0,C
     25,2,0,C
     """
-    fl_df = pd.read_csv("./event-placement-ai/input-data/floor-map.csv",
+    fl_df = pd.read_csv(input_floor,
                         sep=',', engine='python')
 
     """
@@ -35,8 +38,7 @@ def new_position():
     2,Red
     3,Blue
     """
-    pa_df = pd.read_csv(
-        "./event-placement-ai/html_generator/input/participant.csv")
+    pa_df = pd.read_csv(input_participant)
 
     """
     Auto-generated: Mappings
@@ -47,7 +49,7 @@ def new_position():
     2,Red
     3,Blue
     """
-    ma_df = pd.read_csv("./event-placement-ai/html_generator/auto-generated/mappings.csv",
+    ma_df = pd.read_csv(mappings_file,
                         sep=',', engine='python')
 
     """

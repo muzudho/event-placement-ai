@@ -7,6 +7,10 @@ Note.
 
 
 def go_shuffule(pd_list, fl_list):
+
+    # Location.
+    output_mappings = "./event-placement-ai/auto-generated/mappings.csv"
+
     random.shuffle(pd_list)
     # print("pd_list: {}".format(pd_list))
 
@@ -23,7 +27,6 @@ def go_shuffule(pd_list, fl_list):
     6,8
     """
     try:
-        output_mappings = "./event-placement-ai/html_generator/auto-generated/mappings.csv"
         file = open(output_mappings, 'w', encoding='utf-8')
 
         file.write("PARTICIPANT,TABLE\n")
