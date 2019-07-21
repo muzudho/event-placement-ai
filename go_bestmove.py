@@ -4,29 +4,42 @@ from my_lib.html_generator.html_builder import new_html
 from my_lib.entry_list import read_entry_lists
 from my_lib.mapper import write_mappings
 from my_lib.position import new_position
-from build_floor_map import convert_map
+from my_lib.build_floor_map import convert_map
+from evaluation import evaluate
 
 # Location.
-best_position = "./event-placement-ai/output-data/best-position.csv"
+best_position_file = "./event-placement-ai/output-data/best-position.csv"
 
 # Read a cloor map.
 convert_map()
 
 par_id_list, flo_id_list = read_entry_lists()
-print("Info    : Participants count: {}".format(len(par_id_list)))
-print("Info    : Table        count: {}".format(len(flo_id_list)))
+# print("Info    : Participants count: {}".format(len(par_id_list)))
+# print("Info    : Table        count: {}".format(len(flo_id_list)))
 
-# Shuffule
-random.shuffle(par_id_list)
-random.shuffle(flo_id_list)
+max_score = -1
+best_pos_df = None
 
-write_mappings(par_id_list, flo_id_list)
+for i in range(0, 10):
+    # Shuffule
+    random.shuffle(par_id_list)
+    random.shuffle(flo_id_list)
 
-pos_df = new_position()
+    write_mappings(par_id_list, flo_id_list)
 
-new_html(pos_df)
-new_csv(pos_df)
+    pos_df = new_position()
 
-pos_df.to_csv(best_position, index=False)
+    # Evaluation
+    score = evaluate(pos_df)
+    print("Info    : Score : {}".format(score))
+
+    if max_score < score:
+        max_score = score
+        best_pos_df = pos_df
+
+new_html(best_pos_df)
+new_csv(best_pos_df)
+
+best_pos_df.to_csv(best_position_file, index=False)
 
 print("Info    : Finished.")

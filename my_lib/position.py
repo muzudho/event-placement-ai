@@ -10,7 +10,7 @@ def new_position():
     """
     Create position.
     """
-    print("Info    : my_lib/position/new_position().")
+    # print("Info    : my_lib/position/new_position().")
 
     # Location.
     output_position = "./event-placement-ai/auto-generated/position.csv"
@@ -29,8 +29,8 @@ def new_position():
     """
     flo_df = pd.read_csv(input_floor,
                          sep=',', engine='python')
-    print("Info    : floor-map.csv : {}".format(input_floor))
-    print(flo_df.head(100))
+    # print("Info    : floor-map.csv : {}".format(input_floor))
+    # print(flo_df.head(100))
 
     """
     participant.csv
@@ -42,8 +42,8 @@ def new_position():
     3,Blue
     """
     par_df = pd.read_csv(input_participant)
-    print("Info    : participant.csv : {}".format(input_participant))
-    print(par_df.head(100))
+    # print("Info    : participant.csv : {}".format(input_participant))
+    # print(par_df.head(100))
 
     """
     mappings.csv
@@ -56,13 +56,13 @@ def new_position():
     """
     map_df = pd.read_csv(mappings_file,
                          sep=',', engine='python')
-    print("Info    : Mappings DF: {}".format(map_df.shape))
-    print("Info    : mappings.csv : {}".format(mappings_file))
-    print(map_df.head(100))
+    # print("Info    : Mappings DF: {}".format(map_df.shape))
+    # print("Info    : mappings.csv : {}".format(mappings_file))
+    # print(map_df.head(100))
 
     new_df = flo_df.merge(map_df, left_on='ID', right_on='TABLE', how='outer')
-    print("Info    : Join1.")
-    print(new_df.head(100))
+    # print("Info    : Join1.")
+    # print(new_df.head(100))
     """
     new_df
     ------
@@ -85,8 +85,8 @@ def new_position():
 
     new_df = new_df.merge(par_df, left_on='PARTICIPANT',
                           right_on='ID', how='outer')
-    print("Info    : Join2.")
-    print(new_df.head(100))
+    # print("Info    : Join2.")
+    # print(new_df.head(100))
     """
        X  Y BLOCK  PARTICIPANT  TABLE  ID GENRE_CODE
     0  0  0     C            1     27   1        Red
@@ -116,6 +116,6 @@ def new_position():
     4,0,C,5,23,Green
     """
 
-    print("Info    : Position DF: {}".format(new_df.shape))
+    # print("Info    : Position DF: {}".format(new_df.shape))
 
     return new_df

@@ -8,7 +8,7 @@ Note.
 
 
 def read_entry_lists():
-    print("Info    : my_lib/entry_list/read_entry_lists().")
+    # print("Info    : my_lib/entry_list/read_entry_lists().")
 
     # Location.
     participant_csv = "./event-placement-ai/input-data/participant.csv"

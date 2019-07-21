@@ -9,16 +9,16 @@ html_file = "./event-placement-ai/auto-generated/view.html"
 
 
 def new_html(pos_df):
-    print("Info    : my_lib/html_generator/html_builder/new_html().")
-    print("Info    : pos_df.shape : {}".format(pos_df.shape))
+    # print("Info    : my_lib/html_generator/html_builder/new_html().")
+    # print("Info    : pos_df.shape : {}".format(pos_df.shape))
 
     def get_boxes(pos_df):
         html = []
         for _index, row in pos_df.iterrows():
             table_id = row["TABLE"]
             participants_id = row["PARTICIPANT"]
-            print("Info    : TABLE={}, PARTICIPANT={}".format(
-                table_id, participants_id))
+            # print("Info    : TABLE={}, PARTICIPANT={}".format(
+            #    table_id, participants_id))
 
             html.append(
                 """

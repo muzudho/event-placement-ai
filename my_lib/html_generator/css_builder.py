@@ -10,7 +10,7 @@ def new_csv(pos_df):
     """
     Create csv.
     """
-    print("Info    : my_lib/html_generator/css_builder/new_csv().")
+    # print("Info    : my_lib/html_generator/css_builder/new_csv().")
 
     # Location.
     output_css = "./event-placement-ai/auto-generated/table-color.css"
