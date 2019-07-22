@@ -21,7 +21,7 @@ def new_position(floor_df, participant_df, mappings_df):
     26,1,0,C
     25,2,0,C
     """
-    # print("Info    : floor-map.csv : {}".format(floor_map_csv_file))
+    # print("Info    : floor.csv : {}".format(floor_map_csv_file))
     # print(flo_df.head(100))
 
     """

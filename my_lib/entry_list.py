@@ -12,7 +12,7 @@ def read_entry_lists():
 
     # Location.
     participant_csv = "./event-placement-ai/input-data/participant.csv"
-    floor_map_csv = "./event-placement-ai/auto-generated/floor-map.csv"
+    floor_map_csv = "./event-placement-ai/auto-generated/floor.csv"
 
     """
     From: Participant.csv
@@ -28,8 +28,8 @@ def read_entry_lists():
     par_id_list = par_df["ID"].values.tolist()
 
     """
-    From: floor-map.csv
-    -------------------
+    From: floor.csv
+    ---------------
     """
     flo_df = pd.read_csv(floor_map_csv,
                          sep=',', engine='python')
