@@ -8,10 +8,16 @@ from my_lib.build_floor_map import convert_map
 from evaluation import evaluate
 
 # Location.
+input_block_file = "./event-placement-ai/input-data/floor-map-block.txt"
+input_table_file = "./event-placement-ai/input-data/floor-map-table-number.txt"
 best_position_file = "./event-placement-ai/output-data/best-position.csv"
+output_position_file = "./event-placement-ai/auto-generated/position.csv"
+floor_map_csv_file = "./event-placement-ai/auto-generated/floor-map.csv"
+participant_csv_file = "./event-placement-ai/input-data/participant.csv"
+mappings_csv_file = "./event-placement-ai/auto-generated/mappings.csv"
 
 # Read a cloor map.
-convert_map()
+convert_map(input_block_file, input_table_file, floor_map_csv_file)
 
 par_id_list, flo_id_list = read_entry_lists()
 # print("Info    : Participants count: {}".format(len(par_id_list)))
@@ -27,7 +33,21 @@ for i in range(0, 1000):
 
     write_mappings(par_id_list, flo_id_list)
 
-    pos_df = new_position()
+    pos_df = new_position(floor_map_csv_file,
+                          participant_csv_file, mappings_csv_file)
+
+    """
+    output
+    ------
+
+    X,Y,BLOCK,PARTICIPANT,TABLE,GENRE_CODE
+    0,0,C,1,27,Red
+    1,0,C,2,26,Red
+    2,0,C,3,25,Blue
+    3,0,C,4,24,Blue
+    4,0,C,5,23,Green
+    """
+    pos_df.to_csv(output_position_file, index=False)
 
     # Evaluation
     value = evaluate(pos_df)

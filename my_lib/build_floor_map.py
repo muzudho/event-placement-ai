@@ -3,21 +3,18 @@
 #
 # Root directory: Visual studio code workspace root.
 #
-block_input_file = "./event-placement-ai/input-data/floor-map-block.txt"
-table_input_file = "./event-placement-ai/input-data/floor-map-table-number.txt"
-output_file_name = "./event-placement-ai/auto-generated/floor-map.csv"
 
 
-def convert_map():
+def convert_map(input_block_file, input_table_file, output_floor_file):
     print("Info    : biuld_floor_map/convet_map().")
 
     try:
-        bl_file = open(block_input_file)
+        bl_file = open(input_block_file)
         try:
-            ta_file = open(table_input_file)
+            ta_file = open(input_table_file)
 
             try:
-                out_file = open(output_file_name, 'w', encoding='utf-8')
+                out_file = open(output_floor_file, 'w', encoding='utf-8')
 
                 # Column name, No space.
                 out_file.write("ID,X,Y,BLOCK\n")
