@@ -4,7 +4,7 @@ from my_lib.html_generator.html_builder import new_html
 from my_lib.entry_list import read_entry_lists
 from my_lib.mapper import write_mappings
 from my_lib.position import new_position
-from my_lib.build_floor_map import convert_map
+from my_lib.build_floor_map import convert_floor_map
 from evaluation import evaluate
 
 # Location.
@@ -17,7 +17,8 @@ participant_csv_file = "./event-placement-ai/input-data/participant.csv"
 mappings_csv_file = "./event-placement-ai/auto-generated/mappings.csv"
 
 # Read a cloor map.
-convert_map(input_block_file, input_table_file, floor_map_csv_file)
+floor_df = convert_floor_map(input_block_file, input_table_file)
+floor_df.to_csv(floor_map_csv_file, index=False)
 
 par_id_list, flo_id_list = read_entry_lists()
 # print("Info    : Participants count: {}".format(len(par_id_list)))
