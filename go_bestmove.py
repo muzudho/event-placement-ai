@@ -17,7 +17,7 @@ floor_file = "./event-placement-ai/auto-generated/floor.csv"
 participant_file = "./event-placement-ai/input-data/participant.csv"
 mappings_file = "./event-placement-ai/auto-generated/mappings.csv"
 
-# Read a cloor map.
+# Read a floor.
 floor_df = convert_floor_map(block_file, table_file)
 floor_df.to_csv(floor_file, index=False)
 
@@ -35,8 +35,8 @@ for i in range(0, 1000):
     mappings_df = new_mappings(par_id_list, flo_id_list)
     mappings_df.to_csv(mappings_file, index=False)
 
-    floor_df = pd.read_csv(floor_file,
-                           sep=',', engine='python')
+    # floor_df = pd.read_csv(floor_file,
+    #                       sep=',', engine='python')
     participant_df = pd.read_csv(participant_file)
     # mappings_df = pd.read_csv(mappings_file,
     #                          sep=',', engine='python')
