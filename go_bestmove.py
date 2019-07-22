@@ -1,4 +1,5 @@
 import random
+import pandas as pd
 from my_lib.html_generator.css_builder import new_csv
 from my_lib.html_generator.html_builder import new_html
 from my_lib.entry_list import read_entry_lists
@@ -25,7 +26,6 @@ par_id_list, flo_id_list = read_entry_lists()
 # print("Info    : Table        count: {}".format(len(flo_id_list)))
 
 max_value = -1
-best_pos_df = None
 
 for i in range(0, 1000):
     # Shuffule
@@ -34,8 +34,14 @@ for i in range(0, 1000):
 
     write_mappings(par_id_list, flo_id_list)
 
-    pos_df = new_position(floor_map_csv_file,
-                          participant_csv_file, mappings_csv_file)
+    floor_df = pd.read_csv(floor_map_csv_file,
+                           sep=',', engine='python')
+    participant_df = pd.read_csv(participant_csv_file)
+    mappings_df = pd.read_csv(mappings_csv_file,
+                              sep=',', engine='python')
+
+    pos_df = new_position(floor_df,
+                          participant_df, mappings_df)
 
     """
     output
@@ -52,15 +58,14 @@ for i in range(0, 1000):
 
     # Evaluation
     value = evaluate(pos_df)
-    print("Info    : Value={}, Max={}".format(value, max_value))
+    print("Info    : i={}, Value={}, Max={}".format(i, value, max_value))
 
     if max_value < value:
+        # Update and output.
         max_value = value
-        best_pos_df = pos_df
+        new_html(pos_df)
+        new_csv(pos_df)
+        pos_df.to_csv(best_position_file, index=False)
 
-new_html(best_pos_df)
-new_csv(best_pos_df)
-
-best_pos_df.to_csv(best_position_file, index=False)
 
 print("Info    : Finished.")

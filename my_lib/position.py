@@ -6,23 +6,21 @@ Note.
 """
 
 
-def new_position(floor_map_csv_file, participant_csv_file, mappings_csv_file):
+def new_position(floor_df, participant_df, mappings_df):
     """
     Create position.
     """
     # print("Info    : my_lib/position/new_position().")
 
     """
-    floor-map.csv
-    --------------------
+    floor_df
+    --------
 
     ID,X,Y,BLOCK
     27,0,0,C
     26,1,0,C
     25,2,0,C
     """
-    flo_df = pd.read_csv(floor_map_csv_file,
-                         sep=',', engine='python')
     # print("Info    : floor-map.csv : {}".format(floor_map_csv_file))
     # print(flo_df.head(100))
 
@@ -35,8 +33,7 @@ def new_position(floor_map_csv_file, participant_csv_file, mappings_csv_file):
     2,Red
     3,Blue
     """
-    par_df = pd.read_csv(participant_csv_file)
-    # print("Info    : participant.csv : {}".format(participant_csv_file))
+    # print("Info    : participant.csv : {}".format(participant_df))
     # print(par_df.head(100))
 
     """
@@ -48,13 +45,12 @@ def new_position(floor_map_csv_file, participant_csv_file, mappings_csv_file):
     23,27
     57,47
     """
-    map_df = pd.read_csv(mappings_csv_file,
-                         sep=',', engine='python')
-    # print("Info    : Mappings DF: {}".format(map_df.shape))
-    # print("Info    : mappings.csv : {}".format(mappings_csv_file))
-    # print(map_df.head(100))
+    # print("Info    : Mappings DF: {}".format(mappings_df.shape))
+    # print("Info    : mappings.csv : {}".format(mappings_df))
+    # print(mappings_df.head(100))
 
-    new_df = flo_df.merge(map_df, left_on='ID', right_on='TABLE', how='outer')
+    new_df = floor_df.merge(mappings_df, left_on='ID',
+                            right_on='TABLE', how='outer')
     # print("Info    : Join1.")
     # print(new_df.head(100))
     """
@@ -77,7 +73,7 @@ def new_position(floor_map_csv_file, participant_csv_file, mappings_csv_file):
     25  2  0     C            3     25
     """
 
-    new_df = new_df.merge(par_df, left_on='PARTICIPANT',
+    new_df = new_df.merge(participant_df, left_on='PARTICIPANT',
                           right_on='ID', how='outer')
     # print("Info    : Join2.")
     # print(new_df.head(100))
