@@ -1,6 +1,2 @@
-CCCCC..BBBB..AAAAAAA
-C..................A
-C.FFF..EEEE..DDDDD.A
-C.FFF..EEEE..DDDDD.A
-C..................A
-CCCCC........AAAAAAA
+AA..BB
+AA..BB

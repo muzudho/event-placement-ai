@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def convert_floor_map(input_block_file, input_table_file):
-    print("Info    : biuld_floor_map/convet_floor_map().")
+    # print("Info    : biuld_floor_map/convet_floor_map().")
 
     try:
         bl_file = open(input_block_file)
@@ -37,10 +37,10 @@ def convert_floor_map(input_block_file, input_table_file):
                         id_column.append(num)
 
             # 机の個数をベースで。
-            print("len(id_column   ):{}".format(len(id_column)))
-            print("len(x_column    ):{}".format(len(x_column)))
-            print("len(y_column    ):{}".format(len(y_column)))
-            print("len(block_column):{}".format(len(block_column)))
+            # print("len(id_column   ):{}".format(len(id_column)))
+            # print("len(x_column    ):{}".format(len(x_column)))
+            # print("len(y_column    ):{}".format(len(y_column)))
+            # print("len(block_column):{}".format(len(block_column)))
 
             df = pd.DataFrame(columns=['ID', 'X', 'Y', 'BLOCK'])
 
