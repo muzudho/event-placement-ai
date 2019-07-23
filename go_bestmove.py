@@ -64,8 +64,8 @@ for i in range(0, 1000):
     if max_value < value:
         # Update and output.
         max_value = value
-        new_html(pos_df)
-        new_csv(pos_df)
+        new_html(pos_df, 0, 0, 0)
+        new_csv(pos_df, 0, 0)
         pos_df.to_csv(best_position_file, index=False)
 
 

@@ -6,14 +6,14 @@ Note.
 """
 
 
-def new_csv(pos_df):
+def new_csv(pos_df, test_number, variation_number):
     """
     Create csv.
     """
     # print("Info    : my_lib/html_generator/css_builder/new_csv().")
 
     # Location.
-    output_css = "./event-placement-ai/auto-generated/table-color.css"
+    output_css = "./event-placement-ai/auto-generated/placement-{}-{}.css"
 
     def write():
 
@@ -33,14 +33,14 @@ def new_csv(pos_df):
 
                 html.append(
                     """
-        #table{} {{
-            position: absolute;
-            left    : {: >4}px;
-            top     : {: >4}px;
-            width   : {: >4}px;
-            height  : {: >4}px;
-            background-color: {};
-        }}
+#table{} {{
+    position: absolute;
+    left    : {: >4}px;
+    top     : {: >4}px;
+    width   : {: >4}px;
+    height  : {: >4}px;
+    background-color: {};
+}}
                     """.format(
                         table_id,
                         x * width,
@@ -53,10 +53,17 @@ def new_csv(pos_df):
             return "".join(html)
 
         try:
-            file = open(output_css, 'w', encoding='utf-8')
+            file = open(output_css.format(
+                test_number, variation_number), 'w', encoding='utf-8')
             file.write(
                 """
-    {}
+#floor-map {{
+    position: relative;
+    left    : 0px;
+    top     : 0px;
+}}
+
+{}
                 """.format(get_boxes())
             )
         except Exception as e:

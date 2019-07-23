@@ -5,12 +5,14 @@ import pandas as pd
 #
 # Root directory: Visual studio code workspace root.
 #
-html_file = "./event-placement-ai/auto-generated/view.html"
 
 
-def new_html(pos_df):
+def new_html(pos_df, test_number, variation_number, value):
     # print("Info    : my_lib/html_generator/html_builder/new_html().")
     # print("Info    : pos_df.shape : {}".format(pos_df.shape))
+
+    # Location.
+    html_file = "./event-placement-ai/auto-generated/placement-{}-{}.html"
 
     def get_boxes(pos_df):
         html = []
@@ -28,20 +30,24 @@ def new_html(pos_df):
         return "".join(html)
 
     try:
-        file = open(html_file, 'w', encoding='utf-8')
+        file = open(html_file.format(
+            test_number, variation_number), 'w', encoding='utf-8')
         file.write(
             """
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="table-color.css">
-    <title>サンプル</title>
+    <link rel="stylesheet" href="placement-{0}-{1}.css">
+    <title>placement-{0}-{1}</title>
 </head>
 <body>
-{}
+    <h1>Value={3}</h1>
+    <div id="floor-map">
+{2}
+    </div>
 </body>
 </html>
-            """.format(get_boxes(pos_df))
+            """.format(test_number, variation_number, get_boxes(pos_df), value)
         )
     except Exception as e:
         print(e)
