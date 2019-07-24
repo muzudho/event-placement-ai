@@ -7,13 +7,27 @@ Note.
 """
 
 
-def read_entry_lists():
+def new_entry_lists_from_mappings(best_mappings_file):
+    # print("Info    : my_lib/entry_list/new_entry_lists_from_mappings().")
+    """
+    From: mappings.csv
+    ---------------------
+
+    TABLE,PARTICIPANT
+    1,26
+    2,8
+    3,39
+    """
+    map_df = pd.read_csv(best_mappings_file,
+                         sep=',', engine='python')
+    tbl_id_list = map_df["TABLE"].values.tolist()
+    par_id_list = map_df["PARTICIPANT"].values.tolist()
+
+    return tbl_id_list, par_id_list
+
+
+def read_entry_lists(floor_csv, participant_csv):
     # print("Info    : my_lib/entry_list/read_entry_lists().")
-
-    # Location.
-    participant_csv = "./event-placement-ai/input-data/participant.csv"
-    floor_map_csv = "./event-placement-ai/auto-generated/floor.csv"
-
     """
     From: Participant.csv
     ---------------------
@@ -31,7 +45,7 @@ def read_entry_lists():
     From: floor.csv
     ---------------
     """
-    flo_df = pd.read_csv(floor_map_csv,
+    tbl_df = pd.read_csv(floor_csv,
                          sep=',', engine='python')
-    flo_id_list = flo_df["ID"].values.tolist()
-    return par_id_list, flo_id_list
+    tbl_id_list = tbl_df["ID"].values.tolist()
+    return tbl_id_list, par_id_list

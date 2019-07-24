@@ -6,14 +6,14 @@ Note.
 """
 
 
-def new_mappings(par_id_list, flo_id_list):
+def new_mappings(tbl_id_list, par_id_list):
     # print("Info    : my_lib/mapper/new_mappings().")
 
     # print("par_id_list: {}".format(par_id_list))
     # print("Info    : len(par_id_list) : {}".format(len(par_id_list)))
 
-    # print("flo_id_list: {}".format(flo_id_list))
-    # print("Info    : len(flo_id_list) : {}".format(len(flo_id_list)))
+    # print("tbl_id_list: {}".format(tbl_id_list))
+    # print("Info    : len(tbl_id_list) : {}".format(len(tbl_id_list)))
     """
     Make: mappings.csv
     ------------------
@@ -25,7 +25,7 @@ def new_mappings(par_id_list, flo_id_list):
     """
     df = pd.DataFrame(columns=['TABLE', 'PARTICIPANT'])
 
-    for i, table_id in enumerate(flo_id_list):
+    for i, table_id in enumerate(tbl_id_list):
         if i < len(par_id_list):
             participants_id = par_id_list[i]
         else:

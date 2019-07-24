@@ -1,7 +1,10 @@
+import os
 import random
 import pandas as pd
 from my_lib.html_generator.css_builder import new_csv
 from my_lib.html_generator.html_builder import new_html
+from my_lib.html_generator.json_builder import new_json
+from my_lib.entry_list import new_entry_lists_from_mappings
 from my_lib.entry_list import read_entry_lists
 from my_lib.mapper import new_mappings
 from my_lib.position import new_position
@@ -15,20 +18,26 @@ best_position_file = "./event-placement-ai/output-data/best-position.csv"
 position_file = "./event-placement-ai/auto-generated/position.csv"
 floor_file = "./event-placement-ai/auto-generated/floor.csv"
 participant_file = "./event-placement-ai/input-data/participant.csv"
-mappings_file = "./event-placement-ai/auto-generated/mappings.csv"
+best_mappings_file = "./event-placement-ai/auto-generated/best-mappings.csv"
 
 # Read a floor.
 floor_df = convert_floor_map(block_file, table_file)
 floor_df.to_csv(floor_file, index=False)
 
-par_id_list, flo_id_list = read_entry_lists()
+if os.path.isfile(best_mappings_file):
+    tbl_id_list, par_id_list = new_entry_lists_from_mappings(
+        best_mappings_file)
+else:
+    tbl_id_list, par_id_list = read_entry_lists(floor_file, participant_file)
 # print("Info    : Participants count: {}".format(len(par_id_list)))
-# print("Info    : Table        count: {}".format(len(flo_id_list)))
+# print("Info    : Table        count: {}".format(len(tbl_id_list)))
+
+# Sort table.
+tbl_id_list.sort()
+# random.shuffle(tbl_id_list)
 
 # Shuffule at first.
-random.shuffle(par_id_list)
-flo_id_list.sort()
-# random.shuffle(flo_id_list)
+# random.shuffle(par_id_list)
 
 max_value = -1
 
@@ -42,14 +51,9 @@ for i in range(0, 1000):
     par_id_list[index1] = par_id_list[index2]
     par_id_list[index2] = temp
 
-    mappings_df = new_mappings(par_id_list, flo_id_list)
-    mappings_df.to_csv(mappings_file, index=False)
+    mappings_df = new_mappings(tbl_id_list, par_id_list)
 
-    # floor_df = pd.read_csv(floor_file,
-    #                       sep=',', engine='python')
     participant_df = pd.read_csv(participant_file)
-    # mappings_df = pd.read_csv(mappings_file,
-    #                          sep=',', engine='python')
 
     pos_df = new_position(floor_df,
                           participant_df, mappings_df)
@@ -74,8 +78,10 @@ for i in range(0, 1000):
     if max_value < value:
         # Update and output.
         max_value = value
-        new_html(pos_df, 0, 0, 0)
+        new_html(pos_df, 0, 0, max_value)
         new_csv(pos_df, 0, 0)
+        new_json(pos_df, 0, 0, max_value)
+        mappings_df.to_csv(best_mappings_file, index=False)
         pos_df.to_csv(best_position_file, index=False)
     else:
         # Cancel swap.
