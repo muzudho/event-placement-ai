@@ -1,75 +1,549 @@
 
-    
-        #table2 {
-            position: absolute;
-            left    :    0px;
-            top     :    0px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Red;
-        }
+#floor-map {
+    position: relative;
+    left    : 0px;
+    top     : 0px;
+}
+
+
+#table27 {
+    position: absolute;
+    left    :    0px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
                     
-        #table1 {
-            position: absolute;
-            left    :   32px;
-            top     :    0px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Red;
-        }
+#table26 {
+    position: absolute;
+    left    :   32px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
                     
-        #table6 {
-            position: absolute;
-            left    :  128px;
-            top     :    0px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Blue;
-        }
+#table25 {
+    position: absolute;
+    left    :   64px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
                     
-        #table5 {
-            position: absolute;
-            left    :  160px;
-            top     :    0px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Blue;
-        }
+#table24 {
+    position: absolute;
+    left    :   96px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
                     
-        #table3 {
-            position: absolute;
-            left    :    0px;
-            top     :   32px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Green;
-        }
+#table23 {
+    position: absolute;
+    left    :  128px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
                     
-        #table4 {
-            position: absolute;
-            left    :   32px;
-            top     :   32px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Blue;
-        }
+#table22 {
+    position: absolute;
+    left    :  224px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Gray;
+}
                     
-        #table7 {
-            position: absolute;
-            left    :  128px;
-            top     :   32px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Red;
-        }
+#table21 {
+    position: absolute;
+    left    :  256px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Pink;
+}
                     
-        #table8 {
-            position: absolute;
-            left    :  160px;
-            top     :   32px;
-            width   :   32px;
-            height  :   32px;
-            background-color: Blue;
-        }
+#table20 {
+    position: absolute;
+    left    :  288px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Gray;
+}
+                    
+#table19 {
+    position: absolute;
+    left    :  320px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Purple;
+}
+                    
+#table18 {
+    position: absolute;
+    left    :  416px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table17 {
+    position: absolute;
+    left    :  448px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Black;
+}
+                    
+#table16 {
+    position: absolute;
+    left    :  480px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table15 {
+    position: absolute;
+    left    :  512px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table14 {
+    position: absolute;
+    left    :  544px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table13 {
+    position: absolute;
+    left    :  576px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Brown;
+}
+                    
+#table12 {
+    position: absolute;
+    left    :  608px;
+    top     :    0px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table28 {
+    position: absolute;
+    left    :    0px;
+    top     :   32px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table11 {
+    position: absolute;
+    left    :  608px;
+    top     :   32px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Black;
+}
+                    
+#table29 {
+    position: absolute;
+    left    :    0px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table57 {
+    position: absolute;
+    left    :   64px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Orange;
+}
+                    
+#table56 {
+    position: absolute;
+    left    :   96px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: SkyBlue;
+}
+                    
+#table55 {
+    position: absolute;
+    left    :  128px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Pink;
+}
+                    
+#table50 {
+    position: absolute;
+    left    :  224px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table49 {
+    position: absolute;
+    left    :  256px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table48 {
+    position: absolute;
+    left    :  288px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Violet;
+}
+                    
+#table47 {
+    position: absolute;
+    left    :  320px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table41 {
+    position: absolute;
+    left    :  416px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table40 {
+    position: absolute;
+    left    :  448px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table39 {
+    position: absolute;
+    left    :  480px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table38 {
+    position: absolute;
+    left    :  512px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table37 {
+    position: absolute;
+    left    :  544px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table10 {
+    position: absolute;
+    left    :  608px;
+    top     :   64px;
+    width   :   32px;
+    height  :   32px;
+    background-color: White;
+}
+                    
+#table30 {
+    position: absolute;
+    left    :    0px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table58 {
+    position: absolute;
+    left    :   64px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Orange;
+}
+                    
+#table59 {
+    position: absolute;
+    left    :   96px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Black;
+}
+                    
+#table60 {
+    position: absolute;
+    left    :  128px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Orange;
+}
+                    
+#table51 {
+    position: absolute;
+    left    :  224px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table52 {
+    position: absolute;
+    left    :  256px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table53 {
+    position: absolute;
+    left    :  288px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table54 {
+    position: absolute;
+    left    :  320px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Red;
+}
+                    
+#table42 {
+    position: absolute;
+    left    :  416px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table43 {
+    position: absolute;
+    left    :  448px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table44 {
+    position: absolute;
+    left    :  480px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table45 {
+    position: absolute;
+    left    :  512px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table46 {
+    position: absolute;
+    left    :  544px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Green;
+}
+                    
+#table9 {
+    position: absolute;
+    left    :  608px;
+    top     :   96px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Violet;
+}
+                    
+#table31 {
+    position: absolute;
+    left    :    0px;
+    top     :  128px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table8 {
+    position: absolute;
+    left    :  608px;
+    top     :  128px;
+    width   :   32px;
+    height  :   32px;
+    background-color: YellowGreen;
+}
+                    
+#table32 {
+    position: absolute;
+    left    :    0px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table33 {
+    position: absolute;
+    left    :   32px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table34 {
+    position: absolute;
+    left    :   64px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table35 {
+    position: absolute;
+    left    :   96px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table36 {
+    position: absolute;
+    left    :  128px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table1 {
+    position: absolute;
+    left    :  416px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
+                    
+#table2 {
+    position: absolute;
+    left    :  448px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table3 {
+    position: absolute;
+    left    :  480px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: White;
+}
+                    
+#table4 {
+    position: absolute;
+    left    :  512px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: White;
+}
+                    
+#table5 {
+    position: absolute;
+    left    :  544px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Blue;
+}
+                    
+#table6 {
+    position: absolute;
+    left    :  576px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: White;
+}
+                    
+#table7 {
+    position: absolute;
+    left    :  608px;
+    top     :  160px;
+    width   :   32px;
+    height  :   32px;
+    background-color: Yellow;
+}
                     
                 

@@ -25,12 +25,22 @@ par_id_list, flo_id_list = read_entry_lists()
 # print("Info    : Participants count: {}".format(len(par_id_list)))
 # print("Info    : Table        count: {}".format(len(flo_id_list)))
 
+# Shuffule at first.
+random.shuffle(par_id_list)
+flo_id_list.sort()
+# random.shuffle(flo_id_list)
+
 max_value = -1
 
 for i in range(0, 1000):
-    # Shuffule
-    random.shuffle(par_id_list)
-    random.shuffle(flo_id_list)
+    # Swap.
+    size = len(par_id_list)
+    index1 = random.randint(0, size-1)
+    index2 = random.randint(0, size-1)
+    # print("size={}, index1={}, index2={}".format(size, index1, index2))
+    temp = par_id_list[index1]
+    par_id_list[index1] = par_id_list[index2]
+    par_id_list[index2] = temp
 
     mappings_df = new_mappings(par_id_list, flo_id_list)
     mappings_df.to_csv(mappings_file, index=False)
@@ -67,6 +77,11 @@ for i in range(0, 1000):
         new_html(pos_df, 0, 0, 0)
         new_csv(pos_df, 0, 0)
         pos_df.to_csv(best_position_file, index=False)
+    else:
+        # Cancel swap.
+        temp = par_id_list[index2]
+        par_id_list[index2] = par_id_list[index1]
+        par_id_list[index1] = temp
 
 
 print("Info    : Finished.")
