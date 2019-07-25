@@ -33,17 +33,19 @@ def make_position(test_number, variation_number):
 
 test_number = 1
 variation_number = 1
+progress_num = 0
 pos_df = make_position(test_number, variation_number)
 low_value = evaluate(pos_df)
-new_html(pos_df, test_number, variation_number, low_value)
-new_csv(pos_df, test_number, variation_number)
+new_html(pos_df, test_number, variation_number, progress_num, low_value)
+new_csv(pos_df, test_number, variation_number, progress_num)
 
 test_number = 1
 variation_number = 2
+progress_num = 0
 pos_df = make_position(test_number, variation_number)
 high_value = evaluate(pos_df)
-new_html(pos_df, test_number, variation_number, high_value)
-new_csv(pos_df, test_number, variation_number)
+new_html(pos_df, test_number, variation_number, progress_num, high_value)
+new_csv(pos_df, test_number, variation_number, progress_num)
 
 if (low_value < high_value):
     print("ok.")

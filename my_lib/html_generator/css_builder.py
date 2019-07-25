@@ -6,14 +6,14 @@ Note.
 """
 
 
-def new_csv(pos_df, test_number, variation_number):
+def new_csv(pos_df, test_number, variation_number, progress_num):
     """
     Create csv.
     """
     # print("Info    : my_lib/html_generator/css_builder/new_csv().")
 
     # Location.
-    output_css = "./event-placement-ai/auto-generated/placement-{}-{}.css"
+    output_css = "./event-placement-ai/auto-generated/placement-{}-{}-{}.css"
 
     def write():
 
@@ -54,7 +54,7 @@ def new_csv(pos_df, test_number, variation_number):
 
         try:
             file = open(output_css.format(
-                test_number, variation_number), 'w', encoding='utf-8')
+                test_number, variation_number, progress_num), 'w', encoding='utf-8')
             file.write(
                 """
 #floor-map {{

@@ -1,13 +1,13 @@
 import pandas as pd
 
 
-def new_json(pos_df, test_number, variation_number, max_value):
+def new_json(pos_df, test_number, variation_number, progress_num, max_value):
     # Location.
-    json_file = "./event-placement-ai/auto-generated/placement-{}-{}.json"
+    json_file = "./event-placement-ai/auto-generated/placement-{}-{}-{}.json"
 
     try:
         file = open(json_file.format(
-            test_number, variation_number), 'w', encoding='utf-8')
+            test_number, variation_number, progress_num), 'w', encoding='utf-8')
         file.write(
             """
 {{

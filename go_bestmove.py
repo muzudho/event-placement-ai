@@ -14,10 +14,9 @@ from evaluation import evaluate
 # Location.
 block_file = "./event-placement-ai/input-data/block.txt"
 table_file = "./event-placement-ai/input-data/table.txt"
-best_position_file = "./event-placement-ai/output-data/best-position.csv"
-position_file = "./event-placement-ai/auto-generated/position.csv"
-floor_file = "./event-placement-ai/auto-generated/floor.csv"
 participant_file = "./event-placement-ai/input-data/participant.csv"
+position_file = "./event-placement-ai/auto-generated/position-{}-{}-{}.csv"
+floor_file = "./event-placement-ai/auto-generated/floor.csv"
 best_mappings_file = "./event-placement-ai/auto-generated/best-mappings.csv"
 
 # Read a floor.
@@ -39,15 +38,18 @@ tbl_id_list.sort()
 # Shuffule at first.
 # random.shuffle(par_id_list)
 
+participant_df = pd.read_csv(participant_file)
+
 prod_num = 0
-time_num = 0
+var_num = 0
+progress_num = 0
 retry = True
 max_value = -1
 
 while retry:
     retry = False
     for i in range(0, 1000):
-        time_num += 1
+        progress_num += 1
 
         # Random swap.
         size = len(par_id_list)
@@ -60,23 +62,8 @@ while retry:
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
-        participant_df = pd.read_csv(participant_file)
-
         pos_df = new_position(floor_df,
                               participant_df, mappings_df)
-
-        """
-        output
-        ------
-
-        X,Y,BLOCK,PARTICIPANT,TABLE,GENRE_CODE
-        0,0,C,1,27,Red
-        1,0,C,2,26,Red
-        2,0,C,3,25,Blue
-        3,0,C,4,24,Blue
-        4,0,C,5,23,Green
-        """
-        pos_df.to_csv(position_file, index=False)
 
         # Evaluation
         value = evaluate(pos_df)
@@ -85,11 +72,12 @@ while retry:
         if max_value < value:
             # Update and output.
             max_value = value
-            new_html(pos_df, prod_num, time_num, max_value)
-            new_csv(pos_df, prod_num, time_num)
-            new_json(pos_df, prod_num, time_num, max_value)
+            new_html(pos_df, prod_num, var_num, progress_num, max_value)
+            new_csv(pos_df, prod_num, var_num, progress_num)
+            new_json(pos_df, prod_num, var_num, progress_num, max_value)
             mappings_df.to_csv(best_mappings_file, index=False)
-            pos_df.to_csv(best_position_file, index=False)
+            pos_df.to_csv(position_file.format(
+                prod_num, var_num, progress_num), index=False)
             retry = True
         else:
             # Cancel swap.
