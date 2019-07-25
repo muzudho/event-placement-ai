@@ -39,55 +39,62 @@ tbl_id_list.sort()
 # Shuffule at first.
 # random.shuffle(par_id_list)
 
+prod_num = 0
+time_num = 0
+retry = True
 max_value = -1
 
-for i in range(0, 1000):
-    # Swap.
-    size = len(par_id_list)
-    index1 = random.randint(0, size-1)
-    index2 = random.randint(0, size-1)
-    # print("size={}, index1={}, index2={}".format(size, index1, index2))
-    temp = par_id_list[index1]
-    par_id_list[index1] = par_id_list[index2]
-    par_id_list[index2] = temp
+while retry:
+    retry = False
+    for i in range(0, 1000):
+        time_num += 1
 
-    mappings_df = new_mappings(tbl_id_list, par_id_list)
+        # Random swap.
+        size = len(par_id_list)
+        index1 = random.randint(0, size-1)
+        index2 = random.randint(0, size-1)
+        # print("size={}, index1={}, index2={}".format(size, index1, index2))
+        temp = par_id_list[index1]
+        par_id_list[index1] = par_id_list[index2]
+        par_id_list[index2] = temp
 
-    participant_df = pd.read_csv(participant_file)
+        mappings_df = new_mappings(tbl_id_list, par_id_list)
 
-    pos_df = new_position(floor_df,
-                          participant_df, mappings_df)
+        participant_df = pd.read_csv(participant_file)
 
-    """
-    output
-    ------
+        pos_df = new_position(floor_df,
+                              participant_df, mappings_df)
 
-    X,Y,BLOCK,PARTICIPANT,TABLE,GENRE_CODE
-    0,0,C,1,27,Red
-    1,0,C,2,26,Red
-    2,0,C,3,25,Blue
-    3,0,C,4,24,Blue
-    4,0,C,5,23,Green
-    """
-    pos_df.to_csv(position_file, index=False)
+        """
+        output
+        ------
 
-    # Evaluation
-    value = evaluate(pos_df)
-    print("Info    : i={}, Value={}, Max={}".format(i, value, max_value))
+        X,Y,BLOCK,PARTICIPANT,TABLE,GENRE_CODE
+        0,0,C,1,27,Red
+        1,0,C,2,26,Red
+        2,0,C,3,25,Blue
+        3,0,C,4,24,Blue
+        4,0,C,5,23,Green
+        """
+        pos_df.to_csv(position_file, index=False)
 
-    if max_value < value:
-        # Update and output.
-        max_value = value
-        new_html(pos_df, 0, 0, max_value)
-        new_csv(pos_df, 0, 0)
-        new_json(pos_df, 0, 0, max_value)
-        mappings_df.to_csv(best_mappings_file, index=False)
-        pos_df.to_csv(best_position_file, index=False)
-    else:
-        # Cancel swap.
-        temp = par_id_list[index2]
-        par_id_list[index2] = par_id_list[index1]
-        par_id_list[index1] = temp
+        # Evaluation
+        value = evaluate(pos_df)
+        print("Info    : i={}, Value={}, Max={}".format(i, value, max_value))
 
+        if max_value < value:
+            # Update and output.
+            max_value = value
+            new_html(pos_df, prod_num, time_num, max_value)
+            new_csv(pos_df, prod_num, time_num)
+            new_json(pos_df, prod_num, time_num, max_value)
+            mappings_df.to_csv(best_mappings_file, index=False)
+            pos_df.to_csv(best_position_file, index=False)
+            retry = True
+        else:
+            # Cancel swap.
+            temp = par_id_list[index2]
+            par_id_list[index2] = par_id_list[index1]
+            par_id_list[index1] = temp
 
 print("Info    : Finished.")
