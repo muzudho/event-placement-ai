@@ -28,7 +28,8 @@ def evaluate(pos_df):
             value += count ** 2
             break
 
-    # 集計。テーブル番号順にして、同じ色が連続したら　１点加点。
+    # 集計。テーブル番号順にして、同じ色が連続したら、連続した数だけ加点。
+    continue_bonus = 0
     sorted_pos_df = pos_df.sort_values(by=["TABLE"], ascending=True)
     # print(sorted_pos_df.head(5))
     table_ordered_list = sorted_pos_df[["TABLE", "GENRE_CODE"]].values.tolist()
@@ -36,10 +37,12 @@ def evaluate(pos_df):
     prev_genre_code = None
     for entry in table_ordered_list:
         if prev_genre_code == entry[1]:
-            value += 1
+            continue_bonus += 1
+            value += continue_bonus
             # print("prev_genre_code: {}, entry[1]: {}, value: {}".format(
             #    prev_genre_code, entry[1], value))
         else:
             prev_genre_code = entry[1]
+            continue_bonus = 0
 
     return value
