@@ -46,19 +46,30 @@ progress_num = 0
 retry = True
 max_value = -1
 
+
+def pick_up_table(tbl_id_list, par_id_list):
+    index_list = []
+    for i in range(0, len(par_id_list)):
+        index_list.append(i)
+    return index_list
+
+
 while retry:
     retry = False
     for i in range(0, 1000):
         progress_num += 1
 
+        # Pick up table.
+        index_list = pick_up_table(tbl_id_list, par_id_list)
+
         # Random swap.
-        size = len(par_id_list)
+        size = len(index_list)
         index1 = random.randint(0, size-1)
         index2 = random.randint(0, size-1)
         # print("size={}, index1={}, index2={}".format(size, index1, index2))
-        temp = par_id_list[index1]
-        par_id_list[index1] = par_id_list[index2]
-        par_id_list[index2] = temp
+        temp = par_id_list[index_list[index1]]
+        par_id_list[index_list[index1]] = par_id_list[index_list[index2]]
+        par_id_list[index_list[index2]] = temp
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
