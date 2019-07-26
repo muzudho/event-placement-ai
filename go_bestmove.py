@@ -28,8 +28,8 @@ participant_df = pd.read_csv(participant_file)
 if os.path.isfile(best_mappings_file):
     tbl_id_list, par_id_list = new_entry_lists_from_mappings(
         best_mappings_file)
-    #print("len(tbl_id_list): {}".format(len(tbl_id_list)))
-    #print("len(par_id_list): {}".format(len(par_id_list)))
+    # print("len(tbl_id_list): {}".format(len(tbl_id_list)))
+    # print("len(par_id_list): {}".format(len(par_id_list)))
     print("tbl_id_list: {}".format(tbl_id_list))
     print("par_id_list: {}".format(par_id_list))
 
@@ -41,7 +41,7 @@ if os.path.isfile(best_mappings_file):
         # print("temp_df.values.tolist()[0]: {}".format(
         #    temp_df.values.tolist()[0]))
         genre_code_list.append(temp_df.values.tolist()[0])
-    #print("len(genre_code_list): {}".format(len(genre_code_list)))
+    # print("len(genre_code_list): {}".format(len(genre_code_list)))
     print("genre_code_list: {}".format(genre_code_list))
 else:
     tbl_id_list, par_id_list, genre_code_list = read_entry_lists(
@@ -63,27 +63,38 @@ retry = True
 max_value = -1
 
 
-def pick_up_table(genre_code_list):
+def pick_up_table(tbl_id_list, genre_code_list):
     """
     index_list = []
     for i in range(0, len(par_id_list)):
         index_list.append(i)
     return index_list
     """
+
+    order_list = [0] * len(tbl_id_list)
+    index = 0
+    for tbl_id in tbl_id_list:
+        order_list[tbl_id-1] = index
+        index += 1
+
+    print("order_list: {}".format(order_list))
+
     index_list = []
     prev_genre_code = None
     current = 0
     start = 0
     # 同じジャンルコードが連続しているところは、始点と終点だけを取る。
-    for genre_code in genre_code_list:
-        # print("prev_genre_code: {}, genre_code: {}".format(
-        #    prev_genre_code, genre_code))
+    for index in order_list:
+        genre_code = genre_code_list[index]
+
+        print("prev_genre_code: {}, genre_code: {}".format(
+            prev_genre_code, genre_code))
         if prev_genre_code == None:
             prev_genre_code = genre_code
         elif prev_genre_code != genre_code:
             prev_genre_code = genre_code
-            # print("start: {}, end: {}".format(
-            #    start, current-1))
+            print("start: {}, end: {}".format(
+                start, current-1))
             # Previous start.
             index_list.append(start)
             # Previous end.
@@ -92,10 +103,12 @@ def pick_up_table(genre_code_list):
             start = current
         current += 1
 
-    #print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
+    print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
     index_list.append(len(genre_code_list)-1)
 
-    return list(set(index_list))
+    result = list(set(index_list))
+    print("result: {}".format(result))
+    return result
 
 
 def swap_par(index11, index12, tbl_id_list, par_id_list, genre_code_list):
@@ -122,7 +135,8 @@ while retry:
         progress_num += 1
 
         # Pick up table.
-        index_list = pick_up_table(genre_code_list)
+        index_list = pick_up_table(tbl_id_list, genre_code_list)
+        print("pick up index_list: {}".format(index_list))
 
         # Random swap.
         size = len(index_list)
