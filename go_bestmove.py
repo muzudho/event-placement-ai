@@ -30,7 +30,7 @@ if os.path.isfile(best_mappings_file):
         best_mappings_file)
     # print("len(tbl_id_list): {}".format(len(tbl_id_list)))
     # print("len(par_id_list): {}".format(len(par_id_list)))
-    print("tbl_id_list: {}".format(tbl_id_list))
+    # print("tbl_id_list: {}".format(tbl_id_list))
     # print("par_id_list: {}".format(par_id_list))
 
     genre_code_list = []
@@ -77,13 +77,13 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
         order_list[tbl_id-1] = index
         index += 1
 
-    print("order_list: {}".format(order_list))
+    # print("order_list: {}".format(order_list))
 
     index_list = []
     prev_genre_code = None
     prev_index = -1
     # 同じジャンルコードが連続しているところは、始点と終点だけを取る。
-    for order, index in enumerate(order_list):
+    for index in order_list:
         genre_code = genre_code_list[index]
 
         # print("prev_genre_code: {}, genre_code: {}".format(
@@ -108,9 +108,9 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
 
         prev_index = index
 
-    #print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
+    # print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
     index_list.append(order_list[len(order_list)-1])
-    print("index_list: {}".format(index_list))
+    # print("index_list: {}".format(index_list))
 
     # # 並び順を崩さないようにすること。
     # # result = list(set(index_list))
@@ -118,19 +118,32 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
     return index_list
 
 
-def swap_par(index11, index12, tbl_id_list, par_id_list, genre_code_list):
-    index1 = index_list[index11]
-    index2 = index_list[index12]
+def choice_index():
+    # Pick up table.
+    picked_up_index_list = pick_up_index_list(tbl_id_list, genre_code_list)
+    # print("picked_up_index_list: {}".format(picked_up_index_list))
 
-    temp_tbl_id = tbl_id_list[index1]
+    # Random swap.
+    size = len(picked_up_index_list)
+    index11 = random.randint(0, size-1)
+    index12 = random.randint(0, size-1)
+    index1 = picked_up_index_list[index11]
+    index2 = picked_up_index_list[index12]
+    # print("size={}, index1={}, index2={}".format(size, index1, index2))
+    # print("Choiced index1={}, index2={}".format(index1, index2))
+    return index1, index2
+
+
+def swap_par(index1, index2, par_id_list, genre_code_list):
+    """
+    テーブルＩＤは固定し、参加者ＩＤを入れ替えます。
+    """
     temp_par_id = par_id_list[index1]
     temp_genre_code = genre_code_list[index1]
 
-    tbl_id_list[index1] = tbl_id_list[index2]
     par_id_list[index1] = par_id_list[index2]
     genre_code_list[index1] = genre_code_list[index2]
 
-    tbl_id_list[index2] = temp_tbl_id
     par_id_list[index2] = temp_par_id
     genre_code_list[index2] = temp_genre_code
     return
@@ -141,16 +154,9 @@ while retry:
     for i in range(0, 1000):
         progress_num += 1
 
-        # Pick up table.
-        index_list = pick_up_index_list(tbl_id_list, genre_code_list)
-        print("pick up index_list: {}".format(index_list))
+        index1, index2 = choice_index()
 
-        # Random swap.
-        size = len(index_list)
-        index1 = random.randint(0, size-1)
-        index2 = random.randint(0, size-1)
-        # print("size={}, index1={}, index2={}".format(size, index1, index2))
-        swap_par(index1, index2, tbl_id_list, par_id_list, genre_code_list)
+        swap_par(index1, index2, par_id_list, genre_code_list)
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
@@ -173,7 +179,7 @@ while retry:
             retry = True
         else:
             # Cancel swap.
-            swap_par(index2, index1, tbl_id_list, par_id_list, genre_code_list)
+            swap_par(index2, index1, par_id_list, genre_code_list)
             """
             temp = par_id_list[index2]
             par_id_list[index2] = par_id_list[index1]
