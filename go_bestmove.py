@@ -23,11 +23,29 @@ best_mappings_file = "./event-placement-ai/auto-generated/best-mappings.csv"
 floor_df = convert_floor_map(block_file, table_file)
 floor_df.to_csv(floor_file, index=False)
 
+participant_df = pd.read_csv(participant_file)
+
 if os.path.isfile(best_mappings_file):
     tbl_id_list, par_id_list = new_entry_lists_from_mappings(
         best_mappings_file)
+    #print("len(tbl_id_list): {}".format(len(tbl_id_list)))
+    #print("len(par_id_list): {}".format(len(par_id_list)))
+    print("tbl_id_list: {}".format(tbl_id_list))
+    print("par_id_list: {}".format(par_id_list))
+
+    genre_code_list = []
+    for i in range(0, len(tbl_id_list)):
+        temp_df = participant_df[participant_df.ID == par_id_list[i]]
+        temp_df = temp_df['GENRE_CODE']
+        # print(temp_df.head(5))
+        # print("temp_df.values.tolist()[0]: {}".format(
+        #    temp_df.values.tolist()[0]))
+        genre_code_list.append(temp_df.values.tolist()[0])
+    #print("len(genre_code_list): {}".format(len(genre_code_list)))
+    print("genre_code_list: {}".format(genre_code_list))
 else:
-    tbl_id_list, par_id_list = read_entry_lists(floor_file, participant_file)
+    tbl_id_list, par_id_list, genre_code_list = read_entry_lists(
+        floor_file, participant_df)
 # print("Info    : Participants count: {}".format(len(par_id_list)))
 # print("Info    : Table        count: {}".format(len(tbl_id_list)))
 
@@ -38,8 +56,6 @@ tbl_id_list.sort()
 # Shuffule at first.
 # random.shuffle(par_id_list)
 
-participant_df = pd.read_csv(participant_file)
-
 prod_num = 0
 var_num = 0
 progress_num = 0
@@ -47,11 +63,57 @@ retry = True
 max_value = -1
 
 
-def pick_up_table(tbl_id_list, par_id_list):
+def pick_up_table(genre_code_list):
+    """
     index_list = []
     for i in range(0, len(par_id_list)):
         index_list.append(i)
     return index_list
+    """
+    index_list = []
+    prev_genre_code = None
+    current = 0
+    start = 0
+    # 同じジャンルコードが連続しているところは、始点と終点だけを取る。
+    for genre_code in genre_code_list:
+        # print("prev_genre_code: {}, genre_code: {}".format(
+        #    prev_genre_code, genre_code))
+        if prev_genre_code == None:
+            prev_genre_code = genre_code
+        elif prev_genre_code != genre_code:
+            prev_genre_code = genre_code
+            # print("start: {}, end: {}".format(
+            #    start, current-1))
+            # Previous start.
+            index_list.append(start)
+            # Previous end.
+            index_list.append(current-1)
+            # Current start.
+            start = current
+        current += 1
+
+    #print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
+    index_list.append(len(genre_code_list)-1)
+
+    return list(set(index_list))
+
+
+def swap_par(index11, index12, tbl_id_list, par_id_list, genre_code_list):
+    index1 = index_list[index11]
+    index2 = index_list[index12]
+
+    temp_tbl_id = tbl_id_list[index1]
+    temp_par_id = par_id_list[index1]
+    temp_genre_code = genre_code_list[index1]
+
+    tbl_id_list[index1] = tbl_id_list[index2]
+    par_id_list[index1] = par_id_list[index2]
+    genre_code_list[index1] = genre_code_list[index2]
+
+    tbl_id_list[index2] = temp_tbl_id
+    par_id_list[index2] = temp_par_id
+    genre_code_list[index2] = temp_genre_code
+    return
 
 
 while retry:
@@ -60,16 +122,14 @@ while retry:
         progress_num += 1
 
         # Pick up table.
-        index_list = pick_up_table(tbl_id_list, par_id_list)
+        index_list = pick_up_table(genre_code_list)
 
         # Random swap.
         size = len(index_list)
         index1 = random.randint(0, size-1)
         index2 = random.randint(0, size-1)
         # print("size={}, index1={}, index2={}".format(size, index1, index2))
-        temp = par_id_list[index_list[index1]]
-        par_id_list[index_list[index1]] = par_id_list[index_list[index2]]
-        par_id_list[index_list[index2]] = temp
+        swap_par(index1, index2, tbl_id_list, par_id_list, genre_code_list)
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
@@ -92,8 +152,11 @@ while retry:
             retry = True
         else:
             # Cancel swap.
+            swap_par(index2, index1, tbl_id_list, par_id_list, genre_code_list)
+            """
             temp = par_id_list[index2]
             par_id_list[index2] = par_id_list[index1]
             par_id_list[index1] = temp
+            """
 
 print("Info    : Finished.")

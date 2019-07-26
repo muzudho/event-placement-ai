@@ -26,26 +26,28 @@ def new_entry_lists_from_mappings(best_mappings_file):
     return tbl_id_list, par_id_list
 
 
-def read_entry_lists(floor_csv, participant_csv):
+def read_entry_lists(floor_csv, par_df):
     # print("Info    : my_lib/entry_list/read_entry_lists().")
     """
-    From: Participant.csv
-    ---------------------
-
+    participant.csv
+    ---------
     ID,GENRE_CODE
     1,Red
     2,Red
     3,Blue
     """
-    par_df = pd.read_csv(participant_csv,
-                         sep=',', engine='python')
     par_id_list = par_df["ID"].values.tolist()
+    genre_code_list = par_df["GENRE_CODE"].values.tolist()
 
     """
-    From: floor.csv
-    ---------------
+    floor.csv
+    ---------
+    ID,X,Y,BLOCK
+    27,0,0,C
+    26,1,0,C
+    25,2,0,C
     """
     tbl_df = pd.read_csv(floor_csv,
                          sep=',', engine='python')
     tbl_id_list = tbl_df["ID"].values.tolist()
-    return tbl_id_list, par_id_list
+    return tbl_id_list, par_id_list, genre_code_list
