@@ -4,6 +4,7 @@ import pandas as pd
 from my_lib.html_generator.css_builder import new_csv
 from my_lib.html_generator.html_builder import new_html
 from my_lib.html_generator.json_builder import new_json
+from my_lib.html_generator.json_builder import write_json
 from my_lib.entry_list import new_entry_lists_from_mappings
 from my_lib.entry_list import read_entry_lists
 from my_lib.mapper import new_mappings
@@ -46,15 +47,23 @@ if os.path.isfile(best_mappings_file):
 else:
     tbl_id_list, par_id_list, genre_code_list = read_entry_lists(
         floor_file, participant_df)
+    # テーブルIDは固定。参加者はシャッフル。
+    for size in reversed(range(2, len(par_id_list)-1)):
+        index1 = random.randint(0, size-1)
+        index2 = random.randint(0, size-1)
+        temp = par_id_list[index1]
+        par_id_list[index1] = par_id_list[index2]
+        par_id_list[index2] = temp
+
+    # random.shuffle(par_id_list)
+
 # print("Info    : Participants count: {}".format(len(par_id_list)))
 # print("Info    : Table        count: {}".format(len(tbl_id_list)))
 
 # テーブル番号を崩さずスキャンしたいので、ソートしない。
 # tbl_id_list.sort()
-# random.shuffle(tbl_id_list)
 
 # Shuffule at first.
-# random.shuffle(par_id_list)
 
 prod_num = 0
 var_num = 0
@@ -123,18 +132,29 @@ def choice_index():
     picked_up_index_list = pick_up_index_list(tbl_id_list, genre_code_list)
     # print("picked_up_index_list: {}".format(picked_up_index_list))
 
-    # Random swap.
-    size = len(picked_up_index_list)
-    index11 = random.randint(0, size-1)
-    index12 = random.randint(0, size-1)
-    index1 = picked_up_index_list[index11]
-    index2 = picked_up_index_list[index12]
+    # リトライ回数が多すぎると、終わりたいときに、逆に終わらないかもしれない。
+    retry = 3
+    genre_code1 = None
+    genre_code2 = None
+    while genre_code1 == genre_code2 and 0 < retry:
+        # Random choice at first.
+        size = len(picked_up_index_list)
+        index11 = random.randint(0, size-1)
+        index1 = picked_up_index_list[index11]
+        genre_code1 = genre_code_list[index1]
+
+        # 同じ色はなるべく選ばない。
+        index12 = random.randint(0, size-1)
+        index2 = picked_up_index_list[index12]
+        genre_code2 = genre_code_list[index2]
+        retry -= 1
+
     # print("size={}, index1={}, index2={}".format(size, index1, index2))
     # print("Choiced index1={}, index2={}".format(index1, index2))
     return index1, index2
 
 
-def swap_par(index1, index2, par_id_list, genre_code_list):
+def swap_participant(index1, index2, par_id_list, genre_code_list):
     """
     テーブルＩＤは固定し、参加者ＩＤを入れ替えます。
     """
@@ -156,7 +176,7 @@ while retry:
 
         index1, index2 = choice_index()
 
-        swap_par(index1, index2, par_id_list, genre_code_list)
+        swap_participant(index1, index2, par_id_list, genre_code_list)
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
@@ -172,14 +192,17 @@ while retry:
             max_value = value
             new_html(pos_df, prod_num, var_num, progress_num, max_value)
             new_csv(pos_df, prod_num, var_num, progress_num)
-            new_json(pos_df, prod_num, var_num, progress_num, max_value)
+
+            json = new_json(prod_num, var_num, progress_num, max_value)
+            write_json(prod_num, var_num, progress_num, json)
+
             mappings_df.to_csv(best_mappings_file, index=False)
             pos_df.to_csv(position_file.format(
                 prod_num, var_num, progress_num), index=False)
             retry = True
         else:
             # Cancel swap.
-            swap_par(index2, index1, par_id_list, genre_code_list)
+            swap_participant(index2, index1, par_id_list, genre_code_list)
             """
             temp = par_id_list[index2]
             par_id_list[index2] = par_id_list[index1]

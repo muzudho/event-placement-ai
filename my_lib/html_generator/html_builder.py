@@ -1,4 +1,5 @@
 import pandas as pd
+from my_lib.html_generator.json_builder import new_json
 
 #
 # Note.
@@ -29,9 +30,23 @@ def new_html(pos_df, test_number, variation_number, progress_num, value):
             )
         return "".join(html)
 
+    def make_java_script():
+        json = new_json(test_number, variation_number,
+                        progress_num, value)
+        return """
+<script>
+    document.writeln("a")
+    json = `{}`;
+    document.writeln(json);
+</script>
+        """.format(json)
+
     try:
         file = open(html_file.format(
             test_number, variation_number, progress_num), 'w', encoding='utf-8')
+
+        java_script = make_java_script()
+
         file.write(
             """
 <!DOCTYPE html>
@@ -45,9 +60,12 @@ def new_html(pos_df, test_number, variation_number, progress_num, value):
     <div id="floor-map">
 {3}
     </div>
+    <div id="data">
+    {5}
+    </div>
 </body>
 </html>
-            """.format(test_number, variation_number, progress_num, get_boxes(pos_df), value)
+            """.format(test_number, variation_number, progress_num, get_boxes(pos_df), value, java_script)
         )
     except Exception as e:
         print(e)

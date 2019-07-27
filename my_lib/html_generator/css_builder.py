@@ -18,20 +18,29 @@ def new_csv(pos_df, test_number, variation_number, progress_num):
     def write():
 
         def get_boxes():
-            html = []
+            css = []
+            area_width = 0
+            area_height = 0
+
             for _index, row in pos_df.iterrows():
 
                 table_id = row["TABLE"]
                 # print("     id : {}".format(id))
                 # print("type(id): {}".format(type(id)))
 
-                x = row["X"]
-                y = row["Y"]
-
                 width = 32
                 height = 32
 
-                html.append(
+                x = row["X"] * width
+                y = row["Y"] * height
+
+                if area_width < x+width:
+                    area_width = x+width
+
+                if area_height < y+height:
+                    area_height = y+height
+
+                css.append(
                     """
 #table{} {{
     position: absolute;
@@ -43,28 +52,41 @@ def new_csv(pos_df, test_number, variation_number, progress_num):
 }}
                     """.format(
                         table_id,
-                        x * width,
-                        y * height,
+                        x,
+                        y,
                         width,
                         height,
                         row["GENRE_CODE"])
                 )
 
-            return "".join(html)
+            return "".join(css), area_width, area_height
 
         try:
             file = open(output_css.format(
                 test_number, variation_number, progress_num), 'w', encoding='utf-8')
+
+            boxes, area_width, area_height = get_boxes()
+
             file.write(
                 """
-#floor-map {{
+#data {{
     position: relative;
-    left    : 0px;
-    top     : 0px;
+    left    :   0px;
+    top     :   0px;
+    width   : 100%;
+    height  : 100px;
 }}
 
-{}
-                """.format(get_boxes())
+#floor-map {{
+    position: relative;
+    left    :      0px;
+    top     :      0px;
+    width   : {1: >4}px;
+    height  : {2: >4}px;
+}}
+
+{0}
+                """.format(boxes, area_width, area_height)
             )
         except Exception as e:
             print(e)
