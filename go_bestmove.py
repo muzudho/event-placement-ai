@@ -20,9 +20,31 @@ position_file = "./event-placement-ai/auto-generated/position-{}-{}-{}.csv"
 floor_file = "./event-placement-ai/auto-generated/floor.csv"
 best_mappings_file = "./event-placement-ai/auto-generated/best-mappings.csv"
 
-# Read a floor.
+"""
+floor.csv
+---------
+
+ID,X,Y,BLOCK
+27,0,0,C
+26,1,0,C
+25,2,0,C
+
+- ID順にソートすると、BLOCKも固まるようにしてください。
+"""
 floor_df = convert_floor_map(block_file, table_file)
+floor_df = floor_df.sort_values(by=["ID"], ascending=True)
 floor_df.to_csv(floor_file, index=False)
+
+block_list = []
+block_names = []
+for _index, row in floor_df.iterrows():
+    block = row["BLOCK"]
+    block_list.append(block)
+    block_names.append(block)
+
+# 重複は無くなるが、順はバラバラになる。
+block_names = list(set(block_names))
+print("block_names: {}.".format(block_names))
 
 participant_df = pd.read_csv(participant_file)
 
@@ -169,9 +191,86 @@ def swap_participant(index1, index2, par_id_list, genre_code_list):
     return
 
 
+def shift_smaller():
+    """
+    ブロック単位でシフトします。[1,2,3,4]を、[2,3,4,1]にする動きです。
+    """
+
+    prev_block = None
+    # テーブルID順に並んでいるとします。
+    for index, block in enumerate(block_list):
+        # for index, row in floor_df.iterrows():
+        if prev_block == block:
+            swap_participant(
+                index-1, index, par_id_list, genre_code_list)
+
+        prev_block = block
+
+    return
+
+
+def shift_bigger():
+    """
+    ブロック単位でシフトします。[1,2,3,4]を、[4, 1, 2, 3]にする動きです。
+    """
+
+    prev_block = None
+    index = len(block_list)-1
+    # テーブルID順に並んでいるとします。
+    for block in reversed(block_list):
+        # print("shift_bigger: index={}, block={}.".format(index, block))
+        if prev_block == block:
+            swap_participant(
+                index, index+1, par_id_list, genre_code_list)
+
+        prev_block = block
+        index -= 1
+
+    return
+
+
+def update_best():
+    """
+    最善の局面を更新。
+    """
+    new_html(pos_df, prod_num, var_num, progress_num, max_value)
+    new_csv(pos_df, prod_num, var_num, progress_num)
+
+    json = new_json(prod_num, var_num, progress_num, max_value)
+    write_json(prod_num, var_num, progress_num, json)
+
+    mappings_df.to_csv(best_mappings_file, index=False)
+    pos_df.to_csv(position_file.format(
+        prod_num, var_num, progress_num), index=False)
+    return
+
+
 while retry:
     retry = False
+
     for i in range(0, 1000):
+
+        if i % 50 == 0:
+            # シフトを試してみる。
+            mappings_df = new_mappings(tbl_id_list, par_id_list)
+            pos_df = new_position(floor_df,
+                                  participant_df, mappings_df)
+            value = evaluate(pos_df)
+            print("Info    : Before shift, Value={}, Max={}".format(value, max_value))
+            shift_smaller()
+            mappings_df = new_mappings(tbl_id_list, par_id_list)
+            pos_df = new_position(floor_df,
+                                  participant_df, mappings_df)
+            value = evaluate(pos_df)
+            if max_value < value:
+                # Update and output.
+                max_value = value
+                update_best()
+                retry = True
+            else:
+                # Cancel swap.
+                shift_bigger()
+
         progress_num += 1
 
         index1, index2 = choice_index()
@@ -190,23 +289,10 @@ while retry:
         if max_value < value:
             # Update and output.
             max_value = value
-            new_html(pos_df, prod_num, var_num, progress_num, max_value)
-            new_csv(pos_df, prod_num, var_num, progress_num)
-
-            json = new_json(prod_num, var_num, progress_num, max_value)
-            write_json(prod_num, var_num, progress_num, json)
-
-            mappings_df.to_csv(best_mappings_file, index=False)
-            pos_df.to_csv(position_file.format(
-                prod_num, var_num, progress_num), index=False)
+            update_best()
             retry = True
         else:
             # Cancel swap.
             swap_participant(index2, index1, par_id_list, genre_code_list)
-            """
-            temp = par_id_list[index2]
-            par_id_list[index2] = par_id_list[index1]
-            par_id_list[index1] = temp
-            """
 
 print("Info    : Finished.")
