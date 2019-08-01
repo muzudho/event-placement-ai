@@ -53,14 +53,14 @@ print("block_names: {}.".format(position.block_names))
 participant_df = pd.read_csv(participant_file)
 
 if os.path.isfile(best_mappings_file):
-    tbl_id_list, par_id_list = new_entry_lists_from_mappings(
+    position.tbl_id_list, par_id_list = new_entry_lists_from_mappings(
         best_mappings_file)
-    # print("len(tbl_id_list): {}".format(len(tbl_id_list)))
+    # print("len(tbl_id_list): {}".format(len(position.tbl_id_list)))
     # print("len(par_id_list): {}".format(len(par_id_list)))
-    # print("tbl_id_list: {}".format(tbl_id_list))
+    # print("tbl_id_list: {}".format(position.tbl_id_list))
     # print("par_id_list: {}".format(par_id_list))
 
-    for i in range(0, len(tbl_id_list)):
+    for i in range(0, len(position.tbl_id_list)):
         temp_df = participant_df[participant_df.ID == par_id_list[i]]
         temp_df = temp_df['GENRE_CODE']
         # print(temp_df.head(5))
@@ -70,7 +70,7 @@ if os.path.isfile(best_mappings_file):
     # print("len(genre_code_list): {}".format(len(position.genre_code_list)))
     # print("genre_code_list: {}".format(position.genre_code_list))
 else:
-    tbl_id_list, par_id_list, position.genre_code_list = read_entry_lists(
+    position.tbl_id_list, par_id_list, position.genre_code_list = read_entry_lists(
         floor_file, participant_df)
     # テーブルIDは固定。参加者はシャッフル。
     for size in reversed(range(2, len(par_id_list)-1)):
@@ -83,10 +83,10 @@ else:
     # random.shuffle(par_id_list)
 
 # print("Info    : Participants count: {}".format(len(par_id_list)))
-# print("Info    : Table        count: {}".format(len(tbl_id_list)))
+# print("Info    : Table        count: {}".format(len(position.tbl_id_list)))
 
 # テーブル番号を崩さずスキャンしたいので、ソートしない。
-# tbl_id_list.sort()
+# position.tbl_id_list.sort()
 
 # Shuffule at first.
 
@@ -97,7 +97,7 @@ retry = True
 max_value = -1
 
 
-def pick_up_index_list(tbl_id_list, position):
+def pick_up_index_list(position):
     """
     index_list = []
     for i in range(0, len(par_id_list)):
@@ -105,9 +105,9 @@ def pick_up_index_list(tbl_id_list, position):
     return index_list
     """
 
-    order_list = [0] * len(tbl_id_list)
+    order_list = [0] * len(position.tbl_id_list)
     index = 0
-    for tbl_id in tbl_id_list:
+    for tbl_id in position.tbl_id_list:
         order_list[tbl_id-1] = index
         index += 1
 
@@ -154,7 +154,7 @@ def pick_up_index_list(tbl_id_list, position):
 
 def choice_index():
     # Pick up table.
-    picked_up_index_list = pick_up_index_list(tbl_id_list, position)
+    picked_up_index_list = pick_up_index_list(position)
     # print("picked_up_index_list: {}".format(picked_up_index_list))
 
     # リトライ回数が多すぎると、終わりたいときに、逆に終わらないかもしれない。
@@ -311,13 +311,13 @@ while retry:
 
         if i % 50 == 0:
             # シフトを試してみる。
-            mappings_df = new_mappings(tbl_id_list, par_id_list)
+            mappings_df = new_mappings(position.tbl_id_list, par_id_list)
             pos_df = new_position(floor_df,
                                   participant_df, mappings_df)
             value = evaluate(pos_df)
             print("Info    : Before shift, Value={}, Max={}".format(value, max_value))
             shift_smaller()
-            mappings_df = new_mappings(tbl_id_list, par_id_list)
+            mappings_df = new_mappings(position.tbl_id_list, par_id_list)
             pos_df = new_position(floor_df,
                                   participant_df, mappings_df)
             value = evaluate(pos_df)
@@ -336,7 +336,7 @@ while retry:
 
         swap_participant(index1, index2, par_id_list, position)
 
-        mappings_df = new_mappings(tbl_id_list, par_id_list)
+        mappings_df = new_mappings(position.tbl_id_list, par_id_list)
 
         pos_df = new_position(floor_df,
                               participant_df, mappings_df)
