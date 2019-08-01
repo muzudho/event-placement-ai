@@ -9,6 +9,7 @@ from my_lib.entry_list import new_entry_lists_from_mappings
 from my_lib.entry_list import read_entry_lists
 from my_lib.mapper import new_mappings
 from my_lib.position import new_position
+from my_lib.position import Position
 from my_lib.build_floor_map import convert_floor_map
 from evaluation import evaluate
 
@@ -35,16 +36,19 @@ floor_df = convert_floor_map(block_file, table_file)
 floor_df = floor_df.sort_values(by=["ID"], ascending=True)
 floor_df.to_csv(floor_file, index=False)
 
-block_list = []
-block_names = []
+position = Position()
+
+"""
+block_names = ['A', 'B', 'C', 'D', 'E', 'F']
+"""
 for _index, row in floor_df.iterrows():
     block = row["BLOCK"]
-    block_list.append(block)
-    block_names.append(block)
+    position.block_list.append(block)
+    position.block_names.append(block)
 
 # 重複は無くなるが、順はバラバラになる。
-block_names = list(set(block_names))
-print("block_names: {}.".format(block_names))
+position.block_names = list(set(position.block_names))
+print("block_names: {}.".format(position.block_names))
 
 participant_df = pd.read_csv(participant_file)
 
@@ -198,7 +202,7 @@ def shift_smaller():
 
     prev_block = None
     # テーブルID順に並んでいるとします。
-    for index, block in enumerate(block_list):
+    for index, block in enumerate(position.block_list):
         # for index, row in floor_df.iterrows():
         if prev_block == block:
             swap_participant(
@@ -215,9 +219,9 @@ def shift_bigger():
     """
 
     prev_block = None
-    index = len(block_list)-1
+    index = len(position.block_list)-1
     # テーブルID順に並んでいるとします。
-    for block in reversed(block_list):
+    for block in reversed(position.block_list):
         # print("shift_bigger: index={}, block={}.".format(index, block))
         if prev_block == block:
             swap_participant(
@@ -227,6 +231,62 @@ def shift_bigger():
         index -= 1
 
     return
+
+
+def for_block_asc(callback_head_block, callback_same_block):
+    """
+    ブロックの切れ目が分かるループです。昇順。
+    """
+    # テーブルID順に並んでいるとします。
+    prev_block = None
+    for i in range(0, len(position.block_list)):
+        if prev_block == position.block_list[i]:
+            callback_same_block(i, position.block_list[i])
+        else:
+            callback_head_block(i, position.block_list[i])
+        prev_block = position.block_list[i]
+    return
+
+
+def for_block_desc(callback_tail_block, callback_same_block):
+    """
+    ブロックの切れ目が分かるループです。降順。
+    """
+    # テーブルID順に並んでいるとします。
+    prev_block = None
+    for i in reversed(range(0, len(position.block_list))):
+        if prev_block == position.block_list[i]:
+            callback_same_block(i, position.block_list[i])
+        else:
+            callback_tail_block(i, position.block_list[i])
+        prev_block = position.block_list[i]
+    return
+
+
+'''
+def count_joined_genre_code():
+    """
+    TODO 同じブロック内での、連続するジャンルコードの数。
+    """
+
+    count = 0
+    result_dict = {}
+    prev_block = None
+    prev_genre_code = None
+    for idx in range(0, len(position.block_list)):
+        block = position.block_list[idx]
+        genre_code = genre_code_list[idx]
+        if prev_block != block or prev_genre_code != genre_code:
+            result_dict[prev_block] = count
+            count = 0
+        else:
+            count += 1
+
+        prev_block = block
+        prev_genre_code = genre_code
+
+    return
+'''
 
 
 def update_best():

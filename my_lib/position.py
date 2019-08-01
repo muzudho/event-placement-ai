@@ -99,3 +99,30 @@ def new_position(floor_df, participant_df, mappings_df):
     # print("Info    : Position DF: {}".format(new_df.shape))
 
     return new_df
+
+
+class Position(object):
+    """
+    局面。
+    """
+
+    def __init__(self):
+        self._block_list = []
+        self._block_names = []
+        return
+
+    @property
+    def block_list(self):
+        return self._block_list
+
+    @block_list.setter
+    def block_list(self, value):
+        self._block_list = value
+
+    @property
+    def block_names(self):
+        return self._block_names
+
+    @block_names.setter
+    def block_names(self, value):
+        self._block_names = value
