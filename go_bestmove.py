@@ -15,6 +15,7 @@ from my_lib.relocation import shift_smaller
 from my_lib.relocation import shift_bigger
 from my_lib.relocation import swap_participant
 from my_lib.relocation import choice_index
+from my_lib.relocation import count_joined_genre_code
 from my_lib.build_floor_map import convert_floor_map
 from evaluation import evaluate
 
@@ -130,6 +131,11 @@ while search.retry:
             value = evaluate(pos_df)
             print("Info    : Before shift, Value={}, Max={}".format(
                 value, search.max_value))
+
+            # 先頭から連続するブロック数を求めます。
+            result_dict = count_joined_genre_code(position)
+
+            # 1個だけシフト。 TODO 連続するブロック数だけシフトしたい。
             shift_smaller(position)
             mappings_df = new_mappings(
                 position.tbl_id_list, position.par_id_list)

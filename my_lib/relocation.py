@@ -20,44 +20,6 @@ def swap_participant(index1, index2, position):
     return
 
 
-def shift_smaller(position):
-    """
-    ブロック単位で１つシフトします。[1,2,3,4]を、[2,3,4,1]にする動きです。
-    """
-
-    prev_block = None
-    # テーブルID順に並んでいるとします。
-    for index, block in enumerate(position.block_list):
-        # for index, row in floor_df.iterrows():
-        if prev_block == block:
-            swap_participant(
-                index-1, index, position)
-
-        prev_block = block
-
-    return
-
-
-def shift_bigger(position):
-    """
-    ブロック単位で１つシフトします。[1,2,3,4]を、[4, 1, 2, 3]にする動きです。
-    """
-
-    prev_block = None
-    index = len(position.block_list)-1
-    # テーブルID順に並んでいるとします。
-    for block in reversed(position.block_list):
-        # print("shift_bigger: index={}, block={}.".format(index, block))
-        if prev_block == block:
-            swap_participant(
-                index, index+1, position)
-
-        prev_block = block
-        index -= 1
-
-    return
-
-
 def for_block_asc(position, callback_head_block, callback_same_block):
     """
     ブロックの切れ目が分かるループです。昇順。
@@ -85,6 +47,52 @@ def for_block_desc(position, callback_tail_block, callback_same_block):
         else:
             callback_tail_block(i, position.block_list[i])
         prev_block = position.block_list[i]
+    return
+
+
+def shift_smaller(position):
+    """
+    ブロック単位で１つシフトします。[1,2,3,4]を、[2,3,4,1]にする動きです。
+    テーブルID順に並んでいるとします。
+    """
+
+    def head(index, block):
+        return
+
+    def same(index, block):
+        swap_participant(
+            index-1, index, position)
+        return
+
+    for_block_asc(
+        position,
+        lambda index, block: head(index, block),
+        lambda index, block: same(index, block)
+    )
+
+    return
+
+
+def shift_bigger(position):
+    """
+    ブロック単位で１つシフトします。[1,2,3,4]を、[4, 1, 2, 3]にする動きです。
+    テーブルID順に並んでいるとします。
+    """
+
+    def tail(index, block):
+        return
+
+    def same(index, block):
+        swap_participant(
+            index, index+1, position)
+        return
+
+    for_block_desc(
+        position,
+        lambda index, block: tail(index, block),
+        lambda index, block: same(index, block)
+    )
+
     return
 
 
@@ -189,7 +197,7 @@ def count_joined_genre_code(position):
         prev_genre_code = position.genre_code_list[index]
         count = 0
 
-    def same(index, block, prev_genre_code):
+    def same(index, block, prev_genre_code, count):
         """
         Same.
         """
@@ -204,7 +212,7 @@ def count_joined_genre_code(position):
         position,
         lambda index, block: head(
             index, block, prev_block, prev_genre_code, count),
-        lambda index, block: same(index, block, prev_genre_code)
+        lambda index, block: same(index, block, prev_genre_code, count)
     )
 
     return result_dict
