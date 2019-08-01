@@ -111,6 +111,7 @@ class Position(object):
         self._block_names = []
         self._genre_code_list = []
         self._tbl_id_list = []
+        self._par_id_list = []
         return
 
     @property
@@ -144,3 +145,11 @@ class Position(object):
     @tbl_id_list.setter
     def tbl_id_list(self, value):
         self._tbl_id_list = value
+
+    @property
+    def par_id_list(self):
+        return self._par_id_list
+
+    @par_id_list.setter
+    def par_id_list(self, value):
+        self._par_id_list = value

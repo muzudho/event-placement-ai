@@ -53,15 +53,15 @@ print("block_names: {}.".format(position.block_names))
 participant_df = pd.read_csv(participant_file)
 
 if os.path.isfile(best_mappings_file):
-    position.tbl_id_list, par_id_list = new_entry_lists_from_mappings(
+    position.tbl_id_list, position.par_id_list = new_entry_lists_from_mappings(
         best_mappings_file)
     # print("len(tbl_id_list): {}".format(len(position.tbl_id_list)))
-    # print("len(par_id_list): {}".format(len(par_id_list)))
+    # print("len(par_id_list): {}".format(len(position.par_id_list)))
     # print("tbl_id_list: {}".format(position.tbl_id_list))
-    # print("par_id_list: {}".format(par_id_list))
+    # print("par_id_list: {}".format(position.par_id_list))
 
     for i in range(0, len(position.tbl_id_list)):
-        temp_df = participant_df[participant_df.ID == par_id_list[i]]
+        temp_df = participant_df[participant_df.ID == position.par_id_list[i]]
         temp_df = temp_df['GENRE_CODE']
         # print(temp_df.head(5))
         # print("temp_df.values.tolist()[0]: {}".format(
@@ -70,19 +70,19 @@ if os.path.isfile(best_mappings_file):
     # print("len(genre_code_list): {}".format(len(position.genre_code_list)))
     # print("genre_code_list: {}".format(position.genre_code_list))
 else:
-    position.tbl_id_list, par_id_list, position.genre_code_list = read_entry_lists(
+    position.tbl_id_list, position.par_id_list, position.genre_code_list = read_entry_lists(
         floor_file, participant_df)
     # テーブルIDは固定。参加者はシャッフル。
-    for size in reversed(range(2, len(par_id_list)-1)):
+    for size in reversed(range(2, len(position.par_id_list)-1)):
         index1 = random.randint(0, size-1)
         index2 = random.randint(0, size-1)
-        temp = par_id_list[index1]
-        par_id_list[index1] = par_id_list[index2]
-        par_id_list[index2] = temp
+        temp = position.par_id_list[index1]
+        position.par_id_list[index1] = position.par_id_list[index2]
+        position.par_id_list[index2] = temp
 
-    # random.shuffle(par_id_list)
+    # random.shuffle(position.par_id_list)
 
-# print("Info    : Participants count: {}".format(len(par_id_list)))
+# print("Info    : Participants count: {}".format(len(position.par_id_list)))
 # print("Info    : Table        count: {}".format(len(position.tbl_id_list)))
 
 # テーブル番号を崩さずスキャンしたいので、ソートしない。
@@ -100,7 +100,7 @@ max_value = -1
 def pick_up_index_list(position):
     """
     index_list = []
-    for i in range(0, len(par_id_list)):
+    for i in range(0, len(position.par_id_list)):
         index_list.append(i)
     return index_list
     """
@@ -179,17 +179,17 @@ def choice_index():
     return index1, index2
 
 
-def swap_participant(index1, index2, par_id_list, position):
+def swap_participant(index1, index2, position):
     """
     テーブルＩＤは固定し、参加者ＩＤを入れ替えます。
     """
-    temp_par_id = par_id_list[index1]
+    temp_par_id = position.par_id_list[index1]
     temp_genre_code = position.genre_code_list[index1]
 
-    par_id_list[index1] = par_id_list[index2]
+    position.par_id_list[index1] = position.par_id_list[index2]
     position.genre_code_list[index1] = position.genre_code_list[index2]
 
-    par_id_list[index2] = temp_par_id
+    position.par_id_list[index2] = temp_par_id
     position.genre_code_list[index2] = temp_genre_code
     return
 
@@ -205,7 +205,7 @@ def shift_smaller():
         # for index, row in floor_df.iterrows():
         if prev_block == block:
             swap_participant(
-                index-1, index, par_id_list, position)
+                index-1, index, position)
 
         prev_block = block
 
@@ -224,7 +224,7 @@ def shift_bigger():
         # print("shift_bigger: index={}, block={}.".format(index, block))
         if prev_block == block:
             swap_participant(
-                index, index+1, par_id_list, position)
+                index, index+1, position)
 
         prev_block = block
         index -= 1
@@ -311,13 +311,15 @@ while retry:
 
         if i % 50 == 0:
             # シフトを試してみる。
-            mappings_df = new_mappings(position.tbl_id_list, par_id_list)
+            mappings_df = new_mappings(
+                position.tbl_id_list, position.par_id_list)
             pos_df = new_position(floor_df,
                                   participant_df, mappings_df)
             value = evaluate(pos_df)
             print("Info    : Before shift, Value={}, Max={}".format(value, max_value))
             shift_smaller()
-            mappings_df = new_mappings(position.tbl_id_list, par_id_list)
+            mappings_df = new_mappings(
+                position.tbl_id_list, position.par_id_list)
             pos_df = new_position(floor_df,
                                   participant_df, mappings_df)
             value = evaluate(pos_df)
@@ -334,9 +336,9 @@ while retry:
 
         index1, index2 = choice_index()
 
-        swap_participant(index1, index2, par_id_list, position)
+        swap_participant(index1, index2, position)
 
-        mappings_df = new_mappings(position.tbl_id_list, par_id_list)
+        mappings_df = new_mappings(position.tbl_id_list, position.par_id_list)
 
         pos_df = new_position(floor_df,
                               participant_df, mappings_df)
@@ -352,6 +354,6 @@ while retry:
             retry = True
         else:
             # Cancel swap.
-            swap_participant(index2, index1, par_id_list, position)
+            swap_participant(index2, index1, position)
 
 print("Info    : Finished.")
