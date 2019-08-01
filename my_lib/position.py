@@ -109,6 +109,7 @@ class Position(object):
     def __init__(self):
         self._block_list = []
         self._block_names = []
+        self._genre_code_list = []
         return
 
     @property
@@ -126,3 +127,11 @@ class Position(object):
     @block_names.setter
     def block_names(self, value):
         self._block_names = value
+
+    @property
+    def genre_code_list(self):
+        return self._genre_code_list
+
+    @genre_code_list.setter
+    def genre_code_list(self, value):
+        self._genre_code_list = value

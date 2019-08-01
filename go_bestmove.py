@@ -60,18 +60,17 @@ if os.path.isfile(best_mappings_file):
     # print("tbl_id_list: {}".format(tbl_id_list))
     # print("par_id_list: {}".format(par_id_list))
 
-    genre_code_list = []
     for i in range(0, len(tbl_id_list)):
         temp_df = participant_df[participant_df.ID == par_id_list[i]]
         temp_df = temp_df['GENRE_CODE']
         # print(temp_df.head(5))
         # print("temp_df.values.tolist()[0]: {}".format(
         #    temp_df.values.tolist()[0]))
-        genre_code_list.append(temp_df.values.tolist()[0])
-    # print("len(genre_code_list): {}".format(len(genre_code_list)))
-    # print("genre_code_list: {}".format(genre_code_list))
+        position.genre_code_list.append(temp_df.values.tolist()[0])
+    # print("len(genre_code_list): {}".format(len(position.genre_code_list)))
+    # print("genre_code_list: {}".format(position.genre_code_list))
 else:
-    tbl_id_list, par_id_list, genre_code_list = read_entry_lists(
+    tbl_id_list, par_id_list, position.genre_code_list = read_entry_lists(
         floor_file, participant_df)
     # テーブルIDは固定。参加者はシャッフル。
     for size in reversed(range(2, len(par_id_list)-1)):
@@ -98,7 +97,7 @@ retry = True
 max_value = -1
 
 
-def pick_up_index_list(tbl_id_list, genre_code_list):
+def pick_up_index_list(tbl_id_list, position):
     """
     index_list = []
     for i in range(0, len(par_id_list)):
@@ -119,7 +118,7 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
     prev_index = -1
     # 同じジャンルコードが連続しているところは、始点と終点だけを取る。
     for index in order_list:
-        genre_code = genre_code_list[index]
+        genre_code = position.genre_code_list[index]
 
         # print("prev_genre_code: {}, genre_code: {}".format(
         #    prev_genre_code, genre_code))
@@ -143,7 +142,7 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
 
         prev_index = index
 
-    # print("len(genre_code_list)-1: {}".format(len(genre_code_list)-1))
+    # print("len(genre_code_list)-1: {}".format(len(position.genre_code_list)-1))
     index_list.append(order_list[len(order_list)-1])
     # print("index_list: {}".format(index_list))
 
@@ -155,7 +154,7 @@ def pick_up_index_list(tbl_id_list, genre_code_list):
 
 def choice_index():
     # Pick up table.
-    picked_up_index_list = pick_up_index_list(tbl_id_list, genre_code_list)
+    picked_up_index_list = pick_up_index_list(tbl_id_list, position)
     # print("picked_up_index_list: {}".format(picked_up_index_list))
 
     # リトライ回数が多すぎると、終わりたいときに、逆に終わらないかもしれない。
@@ -167,12 +166,12 @@ def choice_index():
         size = len(picked_up_index_list)
         index11 = random.randint(0, size-1)
         index1 = picked_up_index_list[index11]
-        genre_code1 = genre_code_list[index1]
+        genre_code1 = position.genre_code_list[index1]
 
         # 同じ色はなるべく選ばない。
         index12 = random.randint(0, size-1)
         index2 = picked_up_index_list[index12]
-        genre_code2 = genre_code_list[index2]
+        genre_code2 = position.genre_code_list[index2]
         retry -= 1
 
     # print("size={}, index1={}, index2={}".format(size, index1, index2))
@@ -180,18 +179,18 @@ def choice_index():
     return index1, index2
 
 
-def swap_participant(index1, index2, par_id_list, genre_code_list):
+def swap_participant(index1, index2, par_id_list, position):
     """
     テーブルＩＤは固定し、参加者ＩＤを入れ替えます。
     """
     temp_par_id = par_id_list[index1]
-    temp_genre_code = genre_code_list[index1]
+    temp_genre_code = position.genre_code_list[index1]
 
     par_id_list[index1] = par_id_list[index2]
-    genre_code_list[index1] = genre_code_list[index2]
+    position.genre_code_list[index1] = position.genre_code_list[index2]
 
     par_id_list[index2] = temp_par_id
-    genre_code_list[index2] = temp_genre_code
+    position.genre_code_list[index2] = temp_genre_code
     return
 
 
@@ -206,7 +205,7 @@ def shift_smaller():
         # for index, row in floor_df.iterrows():
         if prev_block == block:
             swap_participant(
-                index-1, index, par_id_list, genre_code_list)
+                index-1, index, par_id_list, position)
 
         prev_block = block
 
@@ -225,7 +224,7 @@ def shift_bigger():
         # print("shift_bigger: index={}, block={}.".format(index, block))
         if prev_block == block:
             swap_participant(
-                index, index+1, par_id_list, genre_code_list)
+                index, index+1, par_id_list, position)
 
         prev_block = block
         index -= 1
@@ -275,7 +274,7 @@ def count_joined_genre_code():
     prev_genre_code = None
     for idx in range(0, len(position.block_list)):
         block = position.block_list[idx]
-        genre_code = genre_code_list[idx]
+        genre_code = position.genre_code_list[idx]
         if prev_block != block or prev_genre_code != genre_code:
             result_dict[prev_block] = count
             count = 0
@@ -335,7 +334,7 @@ while retry:
 
         index1, index2 = choice_index()
 
-        swap_participant(index1, index2, par_id_list, genre_code_list)
+        swap_participant(index1, index2, par_id_list, position)
 
         mappings_df = new_mappings(tbl_id_list, par_id_list)
 
@@ -353,6 +352,6 @@ while retry:
             retry = True
         else:
             # Cancel swap.
-            swap_participant(index2, index1, par_id_list, genre_code_list)
+            swap_participant(index2, index1, par_id_list, position)
 
 print("Info    : Finished.")
